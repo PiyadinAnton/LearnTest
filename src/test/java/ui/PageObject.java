@@ -1,14 +1,18 @@
 package ui;
 
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
+import io.qameta.allure.Allure;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.BeforeAll;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import io.qameta.allure.Attachment;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 
@@ -36,6 +40,7 @@ public class PageObject {
     static String CreateLastName = "Petrovich";
     static String ExpectedElement = "//*[@id=\"app\"]//*[@role=\"cell\"][3]//*";
     static String ExpectedTextForAssertEquals = PageObject.CreateFirstName + " " + PageObject.CreateMiddleName;
+    static String WayToScreen = "C:\\Games\\screenshot\\myscreenshot.png";
 
     public static WebDriver driver;
 
@@ -118,4 +123,41 @@ public class PageObject {
         driver.get(PageObject.URL);
         driver.findElement(By.cssSelector(PageObject.LoginInput)).isDisplayed();
     }
+
+    public static void expectedScreenshot() throws IOException, InterruptedException {
+        Thread.sleep(1500);
+        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        BufferedImage screenshotImage = ImageIO.read(screenshotFile);
+        File expectedScreenshotFile = new File(WayToScreen);
+        BufferedImage expectedScreenshotImage = ImageIO.read(expectedScreenshotFile);
+        boolean isIdentical = compareImages(screenshotImage, expectedScreenshotImage);
+        if (isIdentical) {
+            System.out.println("Скриншоты идентичны.");
+        } else {
+            System.out.println("Скриншоты отличаются.");
+        }
+    }
+
+    private static boolean compareImages(BufferedImage image1, BufferedImage image2) {
+        if (image1.getWidth() != image2.getWidth() || image1.getHeight() != image2.getHeight()) {
+            return false;
+        }
+        for (int x = 0; x < image1.getWidth(); x++) {
+            for (int y = 0; y < image1.getHeight(); y++) {
+                if (image1.getRGB(x, y) != image2.getRGB(x, y)) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+    public static void takeScreenshot() throws InterruptedException {
+        // Сделать снимок экрана с помощью WebDriver
+        Thread.sleep(1500); //слишком быстро грузится страница
+        TakesScreenshot screenshot = (TakesScreenshot) driver;
+        byte[] screenshotBytes = screenshot.getScreenshotAs(OutputType.BYTES);
+        // Добавить снимок экрана в отчет Allure
+        Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshotBytes));
+    }
 }
+
