@@ -8,7 +8,6 @@ import org.openqa.selenium.WebElement;
 public class TestBase extends PageObject {
     @Step("Выход из системы")
     public static void logoutVoid() {
-
         PageObject.setMenuButton();
         PageObject.setLogoutButton();
     }
@@ -50,24 +49,21 @@ public class TestBase extends PageObject {
         PageObject.driver.get(PageObject.URL);
         WebElement loginInput = driver.findElement(By.cssSelector(PageObject.LoginInput));
         WebElement passwordInput = driver.findElement(By.cssSelector(PageObject.PasswordInput));
+        WebElement element = driver.findElement(By.xpath(PageObject.LoginButton));
         loginInput.click();
         loginInput.sendKeys(PageObject.Login);
         passwordInput.click();
         passwordInput.sendKeys(PageObject.Password);
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        //JavaScript-код для клика на элементе
-        WebElement element = driver.findElement(By.xpath(PageObject.LoginButton));
         jsExecutor.executeScript("arguments[0].click();", element);
     }
     @Step("Скроллить")
     public static void scroll(){
-        // JavaScript-код для скроллинга страницы
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
     }
     @Step
     public static void pageTitle(){
-        // заголовок страницы с помощью JavaScript
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         String pageTitle = (String) jsExecutor.executeScript("return document.title;");
         System.out.println("Заголовок страницы: " + pageTitle);

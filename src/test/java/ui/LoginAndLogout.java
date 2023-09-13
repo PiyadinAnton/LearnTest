@@ -2,6 +2,7 @@ package ui;
 
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+
 import java.io.IOException;
 
 public class LoginAndLogout extends PageObject {
@@ -29,19 +30,21 @@ public class LoginAndLogout extends PageObject {
         PageObject.assertLoginButton();
         PageObject.closeApplication();
     }
+
     public static void desLogin() throws InterruptedException, IOException {
         PageObject.setupApplication();
         TestBase.loginAgain();
         try {
-            Assertions.assertEquals(1,2);;
+            Assertions.assertEquals(1, 2);
         } catch (AssertionError error) {
             takeScreenshot(PageObject.driver);
             throw error;
+        } finally {
+            PageObject.closeApplication();
         }
-        PageObject.closeApplication();
     }
 
-    public static void jSTest(){
+    public static void jSTest() {
         PageObject.setupApplication();
         TestBase.forJSFindElement();
         TestBase.assertLoginButton();
