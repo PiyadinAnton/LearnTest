@@ -2,19 +2,16 @@ package ui;
 
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import io.qameta.allure.Allure;
-import org.apache.commons.io.FileUtils;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import io.qameta.allure.Attachment;
-
+import org.testng.annotations.BeforeTest;
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
-
 
 public class PageObject {
     static String URL = "https://opensource-demo.orangehrmlive.com/";
@@ -44,7 +41,7 @@ public class PageObject {
 
     public static WebDriver driver;
 
-    @BeforeAll
+    @BeforeTest
     public static void setupApplication() {
         ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
@@ -57,16 +54,7 @@ public class PageObject {
         driver.quit();
     }
 
-    public static void loginAgain() {
-        WebElement loginInput = driver.findElement(By.cssSelector(PageObject.LoginInput));
-        WebElement passwordInput = driver.findElement(By.cssSelector(PageObject.PasswordInput));
-        WebElement loginButton = driver.findElement(By.xpath(PageObject.LoginButton));
-        loginInput.click();
-        loginInput.sendKeys(PageObject.Login);
-        passwordInput.click();
-        passwordInput.sendKeys(PageObject.Password);
-        loginButton.click();
-    }
+
 
     public static void setMenuButton() {
         WebElement menu = driver.findElement(By.xpath(PageObject.Menu));
@@ -119,9 +107,13 @@ public class PageObject {
         search.click();
     }
 
-    public static void testElementPresence() {
-        driver.get(PageObject.URL);
-        driver.findElement(By.cssSelector(PageObject.LoginInput)).isDisplayed();
+    public static void assertLoginName(){
+        WebElement loginElement = driver.findElement(By.xpath(PageObject.FindName));
+        Assertions.assertTrue(loginElement.isDisplayed());
+    }
+    public static void assertLoginButton(){
+        WebElement loginElement = driver.findElement(By.xpath(PageObject.LoginButton));
+        Assertions.assertTrue(loginElement.isDisplayed());
     }
 
     public static void expectedScreenshot() throws IOException, InterruptedException {
@@ -151,13 +143,12 @@ public class PageObject {
         }
         return true;
     }
-    public static void takeScreenshot() throws InterruptedException {
-        // Сделать снимок экрана с помощью WebDriver
+    public static void takeScreenshot(WebDriver driver) throws InterruptedException,IOException {
         Thread.sleep(1500); //слишком быстро грузится страница
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         byte[] screenshotBytes = screenshot.getScreenshotAs(OutputType.BYTES);
-        // Добавить снимок экрана в отчет Allure
         Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshotBytes));
     }
+
 }
 
