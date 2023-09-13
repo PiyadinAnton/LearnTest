@@ -45,17 +45,32 @@ public class TestBase extends PageObject {
         driver.findElement(By.cssSelector(PageObject.LoginInput)).isDisplayed();
 
     }
+    @Step("Ткнуть на Login")
     public static void forJSFindElement(){
         PageObject.driver.get(PageObject.URL);
+        WebElement loginInput = driver.findElement(By.cssSelector(PageObject.LoginInput));
+        WebElement passwordInput = driver.findElement(By.cssSelector(PageObject.PasswordInput));
+        loginInput.click();
+        loginInput.sendKeys(PageObject.Login);
+        passwordInput.click();
+        passwordInput.sendKeys(PageObject.Password);
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        // 1. Выполнить JavaScript-код для клика на элементе
-        WebElement element = driver.findElement(By.cssSelector(PageObject.LoginButton));
+        //JavaScript-код для клика на элементе
+        WebElement element = driver.findElement(By.xpath(PageObject.LoginButton));
         jsExecutor.executeScript("arguments[0].click();", element);
-        // 2. Выполнить JavaScript-код для скроллинга страницы
+    }
+    @Step("Скроллить")
+    public static void scroll(){
+        // JavaScript-код для скроллинга страницы
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        // 3. Получить заголовок страницы с помощью JavaScript
+    }
+    @Step
+    public static void pageTitle(){
+        // заголовок страницы с помощью JavaScript
+        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         String pageTitle = (String) jsExecutor.executeScript("return document.title;");
         System.out.println("Заголовок страницы: " + pageTitle);
-}
+    }
 
 }

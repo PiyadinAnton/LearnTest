@@ -36,6 +36,7 @@ public class UiTest {
         LoginAndLogout.desLogin();
     }
     @Test
+    @Description("JSСкрипт")
     public void forJSQuest(){
         LoginAndLogout.jSTest();
     }

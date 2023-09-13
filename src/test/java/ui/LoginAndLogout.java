@@ -44,6 +44,10 @@ public class LoginAndLogout extends PageObject {
     public static void jSTest(){
         PageObject.setupApplication();
         TestBase.forJSFindElement();
+        TestBase.assertLoginButton();
+        TestBase.scroll();
+        TestBase.assertLoginName();
+        TestBase.pageTitle();
         PageObject.closeApplication();
     }
 
