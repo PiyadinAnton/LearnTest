@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeTest;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
@@ -65,8 +66,6 @@ public class PageObject {
         driver.quit();
     }
 
-
-
     public static void setMenuButton() {
         WebElement menu = driver.findElement(By.xpath(PageObject.Menu));
         menu.click();
@@ -118,17 +117,20 @@ public class PageObject {
         search.click();
     }
 
-    public static void assertLoginName(){
+    public static void assertLoginName() {
         WebElement loginElement = driver.findElement(By.xpath(PageObject.FindName));
         Assertions.assertTrue(loginElement.isDisplayed());
     }
-    public static void assertLoginButton(){
+
+    public static void assertLoginButton() {
         WebElement loginElement = driver.findElement(By.xpath(PageObject.LoginButton));
         Assertions.assertTrue(loginElement.isDisplayed());
     }
-    public static void assertInvalidCredentials(){
+
+    public static void assertInvalidCredentials() {
         WebElement loginElement = driver.findElement(By.xpath(PageObject.InvalidCredentials));
-        Assertions.assertTrue(loginElement.isDisplayed());}
+        Assertions.assertTrue(loginElement.isDisplayed());
+    }
 
     public static void expectedScreenshot() throws IOException, InterruptedException {
         Thread.sleep(1500);//слишком быстро грузится страница
@@ -157,28 +159,34 @@ public class PageObject {
         }
         return true;
     }
-    public static void takeScreenshot(WebDriver driver) throws InterruptedException,IOException {
+
+    public static void takeScreenshot(WebDriver driver) throws InterruptedException, IOException {
         Thread.sleep(1500); //слишком быстро грузится страница
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         byte[] screenshotBytes = screenshot.getScreenshotAs(OutputType.BYTES);
         Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshotBytes));
     }
+
     public static void setShare() {
         WebElement sharePost = driver.findElement(By.xpath(PageObject.Share));
         sharePost.click();
     }
 
-    public static void setBuzz(){
+    public static void setBuzz() {
         WebElement buzz = driver.findElement(By.cssSelector(PageObject.Buzz));
         buzz.click();
     }
-    public static void setCssShare(){
+
+    public static void setCssShare() {
         WebElement share = driver.findElement(By.cssSelector(PageObject.CssShare));
-        share.click();}
-    public static void setPasteVideo(){
+        share.click();
+    }
+
+    public static void setPasteVideo() {
         WebElement paste = driver.findElement(By.xpath(PageObject.PasteVideo));
         paste.click();
-        paste.sendKeys(PageObject.Video);}
+        paste.sendKeys(PageObject.Video);
+    }
 
 }
 

@@ -35,18 +35,22 @@ public class UiTest {
     public void specNotLoginTest() throws InterruptedException, IOException {
         LoginAndLogout.desLogin();
     }
+
     @Test
     @Description("JSСкрипт")
     public void forJSQuest() throws IOException, InterruptedException {
         LoginAndLogout.jSTest();
     }
+
     @Test
     @Description("Негативный")
     public void fakeLoginTest() throws IOException, InterruptedException {
         LoginAndLogout.fakeLogin();
     }
+
     @Test
     @Description("Поделиться видео")
     public void shareVideoTest() throws IOException, InterruptedException {
-        CreateUserTest.createPost();}
+        CreateUserTest.createPost();
+    }
 }

@@ -46,8 +46,9 @@ public class TestBase extends PageObject {
         driver.findElement(By.cssSelector(PageObject.LoginInput)).isDisplayed();
 
     }
+
     @Step("Ткнуть на Login")
-    public static void forJSFindElement(){
+    public static void forJSFindElement() {
         PageObject.driver.get(PageObject.URL);
         WebElement loginInput = driver.findElement(By.cssSelector(PageObject.LoginInput));
         WebElement passwordInput = driver.findElement(By.cssSelector(PageObject.PasswordInput));
@@ -59,18 +60,21 @@ public class TestBase extends PageObject {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].click();", element);
     }
+
     @Step("Скроллить")
     public static void scroll() throws IOException, InterruptedException {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
         takeScreenshot(PageObject.driver);
     }
+
     @Step
-    public static void pageTitle(){
+    public static void pageTitle() {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         String pageTitle = (String) jsExecutor.executeScript("return document.title;");
         System.out.println("Заголовок страницы: " + pageTitle);
     }
+
     @Step("Ложный вход в систему")
     public static void fakeLoginAgain() {
         WebElement loginInput = driver.findElement(By.cssSelector(PageObject.LoginInput));
@@ -82,5 +86,4 @@ public class TestBase extends PageObject {
         passwordInput.sendKeys(PageObject.FakePassword);
         loginButton.click();
     }
-
 }

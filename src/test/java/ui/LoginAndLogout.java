@@ -51,17 +51,16 @@ public class LoginAndLogout extends PageObject {
         TestBase.scroll();
         PageObject.assertLoginName();
         TestBase.pageTitle();
-
         PageObject.closeApplication();
     }
+
     public static void fakeLogin() throws InterruptedException, IOException {
         PageObject.setupApplication();
         TestBase.fakeLoginAgain();
-            PageObject.assertInvalidCredentials();
-            takeScreenshot(PageObject.driver);
-
-            PageObject.closeApplication();
-        }
+        PageObject.assertInvalidCredentials();
+        takeScreenshot(PageObject.driver);
+        PageObject.closeApplication();
+    }
 
 
 }

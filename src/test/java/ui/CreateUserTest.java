@@ -3,6 +3,7 @@ package ui;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import java.io.IOException;
 
 
@@ -12,15 +13,13 @@ public class CreateUserTest extends TestBase {
         TestBase.loginAgain();
         TestBase.createMan();
         TestBase.checkCreateMan();
-
         WebElement expectedElement = driver.findElement(By.xpath(PageObject.ExpectedElement));
         expectedElement.getText();
         Assertions.assertEquals(expectedElement.getText(), PageObject.ExpectedTextForAssertEquals);
-
         TestBase.closeApplication();
     }
 
-    public static void createPost () throws IOException, InterruptedException {
+    public static void createPost() throws IOException, InterruptedException {
         TestBase.setupApplication();
         TestBase.loginAgain();
         PageObject.setBuzz();
