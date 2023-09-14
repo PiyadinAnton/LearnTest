@@ -31,13 +31,18 @@ public class UiTest {
     }
 
     @Test
-    @Description("Уронить тест")
+    @Description("Уронить тест для отправки скриншота")
     public void specNotLoginTest() throws InterruptedException, IOException {
         LoginAndLogout.desLogin();
     }
     @Test
     @Description("JSСкрипт")
-    public void forJSQuest(){
+    public void forJSQuest() throws IOException, InterruptedException {
         LoginAndLogout.jSTest();
+    }
+    @Test
+    @Description("Негативный")
+    public void fakeLoginTest() throws IOException, InterruptedException {
+        LoginAndLogout.fakeLogin();
     }
 }

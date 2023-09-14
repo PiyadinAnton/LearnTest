@@ -1,5 +1,6 @@
 package ui;
 
+
 import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Assertions;
@@ -11,11 +12,13 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import java.time.Duration;
 
 public class PageObject {
     static String URL = "https://opensource-demo.orangehrmlive.com/";
     static String Login = "Admin";
+    static String FakeLogin = "aaa";
+    static String FakePassword = "bbb";
     static String Password = "admin123";
     static String LoginInput = "[name='username']";
     static String PasswordInput = "[name='password']";
@@ -46,7 +49,7 @@ public class PageObject {
         ChromeDriverManager.getInstance().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(10000, TimeUnit.MILLISECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(PageObject.URL);
     }
 
@@ -117,7 +120,7 @@ public class PageObject {
     }
 
     public static void expectedScreenshot() throws IOException, InterruptedException {
-        Thread.sleep(1500);
+        Thread.sleep(1500);//слишком быстро грузится страница
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         BufferedImage screenshotImage = ImageIO.read(screenshotFile);
         File expectedScreenshotFile = new File(WayToScreen);

@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import java.io.IOException;
+
 public class TestBase extends PageObject {
     @Step("Выход из системы")
     public static void logoutVoid() {
@@ -58,15 +60,27 @@ public class TestBase extends PageObject {
         jsExecutor.executeScript("arguments[0].click();", element);
     }
     @Step("Скроллить")
-    public static void scroll(){
+    public static void scroll() throws IOException, InterruptedException {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
+        takeScreenshot(PageObject.driver);
     }
     @Step
     public static void pageTitle(){
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         String pageTitle = (String) jsExecutor.executeScript("return document.title;");
         System.out.println("Заголовок страницы: " + pageTitle);
+    }
+    @Step("Ложный вход в систему")
+    public static void fakeLoginAgain() {
+        WebElement loginInput = driver.findElement(By.cssSelector(PageObject.LoginInput));
+        WebElement passwordInput = driver.findElement(By.cssSelector(PageObject.PasswordInput));
+        WebElement loginButton = driver.findElement(By.xpath(PageObject.LoginButton));
+        loginInput.click();
+        loginInput.sendKeys(PageObject.FakeLogin);
+        passwordInput.click();
+        passwordInput.sendKeys(PageObject.FakePassword);
+        loginButton.click();
     }
 
 }
