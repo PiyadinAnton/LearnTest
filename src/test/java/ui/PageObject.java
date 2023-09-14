@@ -13,6 +13,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
 
 public class PageObject {
     static String URL = "https://opensource-demo.orangehrmlive.com/";
@@ -27,6 +28,7 @@ public class PageObject {
     static String LogoutButton = "//div//a[@href=\"/web/index.php/auth/logout\"]";
     static String FindName = "//div//h6";
     static String Pim = "ul li:nth-child(2) a";
+    static String Buzz = "ul li:nth-child(12) a";
     static String PimXpath = "//div/div[1]/div/aside/nav/div[2]/ul/li[2]/a";
     static String Add = "/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/button";
     static String SearchFirstName = "[name=\"firstName\"]";
@@ -41,6 +43,12 @@ public class PageObject {
     static String ExpectedElement = "//*[@id=\"app\"]//*[@role=\"cell\"][3]//*";
     static String ExpectedTextForAssertEquals = PageObject.CreateFirstName + " " + PageObject.CreateMiddleName;
     static String WayToScreen = "C:\\Games\\screenshot\\myscreenshot.png";
+    static String InvalidCredentials = "//div[contains(@class, 'oxd-alert-content')]";
+    static String CssShare = "button.oxd-glass-button:nth-child(2)";
+    static String PasteVideo = "(//*[@id=\"app\"]//textarea)[3]";
+    static String Share = "(//*[@type='submit'])[2]";
+
+    static String Video = "https://www.youtube.com/watch?v=Llyp-bN-wBE&ab_channel=TESFAN";
 
     public static WebDriver driver;
 
@@ -118,6 +126,9 @@ public class PageObject {
         WebElement loginElement = driver.findElement(By.xpath(PageObject.LoginButton));
         Assertions.assertTrue(loginElement.isDisplayed());
     }
+    public static void assertInvalidCredentials(){
+        WebElement loginElement = driver.findElement(By.xpath(PageObject.InvalidCredentials));
+        Assertions.assertTrue(loginElement.isDisplayed());}
 
     public static void expectedScreenshot() throws IOException, InterruptedException {
         Thread.sleep(1500);//слишком быстро грузится страница
@@ -152,6 +163,22 @@ public class PageObject {
         byte[] screenshotBytes = screenshot.getScreenshotAs(OutputType.BYTES);
         Allure.addAttachment("Screenshot", new ByteArrayInputStream(screenshotBytes));
     }
+    public static void setShare() {
+        WebElement sharePost = driver.findElement(By.xpath(PageObject.Share));
+        sharePost.click();
+    }
+
+    public static void setBuzz(){
+        WebElement buzz = driver.findElement(By.cssSelector(PageObject.Buzz));
+        buzz.click();
+    }
+    public static void setCssShare(){
+        WebElement share = driver.findElement(By.cssSelector(PageObject.CssShare));
+        share.click();}
+    public static void setPasteVideo(){
+        WebElement paste = driver.findElement(By.xpath(PageObject.PasteVideo));
+        paste.click();
+        paste.sendKeys(PageObject.Video);}
 
 }
 

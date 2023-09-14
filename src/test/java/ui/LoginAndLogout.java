@@ -18,7 +18,7 @@ public class LoginAndLogout extends PageObject {
     public static void login() throws InterruptedException, IOException {
         PageObject.setupApplication();
         TestBase.loginAgain();
-        TestBase.assertLoginName();
+        PageObject.assertLoginName();
         PageObject.takeScreenshot(PageObject.driver);
         PageObject.closeApplication();
     }
@@ -47,18 +47,17 @@ public class LoginAndLogout extends PageObject {
     public static void jSTest() throws IOException, InterruptedException {
         PageObject.setupApplication();
         TestBase.forJSFindElement();
-        TestBase.assertLoginButton();
+        PageObject.assertLoginButton();
         TestBase.scroll();
-        TestBase.assertLoginName();
+        PageObject.assertLoginName();
         TestBase.pageTitle();
+
         PageObject.closeApplication();
     }
     public static void fakeLogin() throws InterruptedException, IOException {
         PageObject.setupApplication();
         TestBase.fakeLoginAgain();
-
-            TestBase.assertLoginButton();
-
+            PageObject.assertInvalidCredentials();
             takeScreenshot(PageObject.driver);
 
             PageObject.closeApplication();

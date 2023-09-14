@@ -45,4 +45,8 @@ public class UiTest {
     public void fakeLoginTest() throws IOException, InterruptedException {
         LoginAndLogout.fakeLogin();
     }
+    @Test
+    @Description("Поделиться видео")
+    public void shareVideoTest() throws IOException, InterruptedException {
+        CreateUserTest.createPost();}
 }
