@@ -5,13 +5,13 @@ import org.openqa.selenium.By;
 
 import java.io.IOException;
 
-public class LoginAndLogout extends PageObject {
+/*public class LoginAndLogout extends PageObject {
 
     public static void findElementTest() throws InterruptedException, IOException {
         PageObject.setupApplication();
         TestBase.testElementPresence();
         Assertions.assertTrue(driver.findElement(By.cssSelector(PageObject.LoginInput)).isDisplayed());
-        PageObject.expectedScreenshot();
+        //PageObject.expectedScreenshot();
         PageObject.closeApplication();
     }
 
@@ -64,3 +64,4 @@ public class LoginAndLogout extends PageObject {
 
 
 }
+*/

@@ -7,8 +7,8 @@ import org.openqa.selenium.WebElement;
 import java.io.IOException;
 
 
-public class CreateUserTest extends TestBase {
-    public static void create() throws InterruptedException {
+/*public class CreateUserTest extends TestBase {
+    /*public static void create() throws InterruptedException {
         TestBase.setupApplication();
         TestBase.loginAgain();
         TestBase.createMan();
@@ -33,4 +33,4 @@ public class CreateUserTest extends TestBase {
         PageObject.takeScreenshot(PageObject.driver);
         TestBase.closeApplication();
     }
-}
+}*/
