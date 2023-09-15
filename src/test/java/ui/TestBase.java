@@ -12,7 +12,6 @@ import java.io.IOException;
 import static io.netty.handler.codec.rtsp.RtspHeaders.Values.URL;
 import static ui.helpers.Locators.ExpectedElement;
 import static ui.helpers.Locators.setLogoutButton;
-import static ui.helpers.ScreenshotListener.expectedScreenshot;
 import static ui.helpers.ScreenshotListener.takeScreenshot;
 import static ui.helpers.WebDriverContainer.*;
 import static ui.pages.BuzzPage.*;
@@ -66,10 +65,8 @@ public class TestBase {
         forThreadSearchElement();
     }
 
-    public static void findElementTest() throws InterruptedException, IOException {
+    public static void findElementTestVoid() throws InterruptedException, IOException {
         testElementPresence();
-        Assertions.assertTrue(driver.findElement(By.cssSelector(LoginInput)).isDisplayed());
-        expectedScreenshot();
     }
 
     @Step("Поиск нужного элемента")

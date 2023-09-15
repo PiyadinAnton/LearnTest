@@ -1,21 +1,7 @@
 package ui.helpers;
-import io.github.bonigarcia.wdm.managers.ChromeDriverManager;
-import io.qameta.allure.Allure;
-import org.junit.jupiter.api.Assertions;
+
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.BeforeTest;
-import ui.PageObject;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.IOException;
-import java.time.Duration;
-
-import static ui.helpers.DataProviderClass.CreateFirstName;
-import static ui.helpers.DataProviderClass.CreateMiddleName;
 
 public class Locators extends WebDriverContainer {
     static String URL = "https://opensource-demo.orangehrmlive.com/";

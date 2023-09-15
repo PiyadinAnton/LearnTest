@@ -1,10 +1,15 @@
 package ui;
 
+import org.junit.jupiter.api.Assertions;
+import org.openqa.selenium.By;
+
 import java.io.IOException;
 
+import static ui.helpers.ScreenshotListener.expectedScreenshot;
 import static ui.helpers.ScreenshotListener.takeScreenshot;
 import static ui.helpers.WebDriverContainer.*;
 import static ui.helpers.WebDriverContainer.driver;
+import static ui.pages.LoginPage.LoginInput;
 
 public class LoginTest extends TestBase{
 
@@ -29,7 +34,17 @@ public class LoginTest extends TestBase{
         closeApplication();
 
         }
-    public static void downTestVoid(){
+    public static void downTestVoid() throws IOException, InterruptedException {
+        setupApplication();
+        desLogin();
+        takeScreenshot(driver);
 
+    }
+    public static void findElementTest() throws InterruptedException, IOException {
+        setupApplication();
+        findElementTestVoid();
+        Assertions.assertTrue(driver.findElement(By.cssSelector(LoginInput)).isDisplayed());
+        expectedScreenshot();
+        closeApplication();
     }
 }

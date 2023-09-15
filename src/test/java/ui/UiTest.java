@@ -6,14 +6,13 @@ import org.testng.annotations.Test;
 import java.io.IOException;
 
 import static ui.LoginTest.*;
-import static ui.TestBase.*;
 import static ui.pages.LoginPage.desLogin;
 
 public class UiTest {
 
     @Test
     @Description("Поиск элемента")
-    public void findElementTest() throws InterruptedException, IOException {
+    public void fiElementTest() throws InterruptedException, IOException {
         findElementTest();
     }
 
@@ -38,7 +37,7 @@ public class UiTest {
     @Test
     @Description("Уронить тест для отправки скриншота")
     public void specNotLoginTest() throws InterruptedException, IOException {
-        desLogin();
+        downTestVoid();
     }
 
     @Test
