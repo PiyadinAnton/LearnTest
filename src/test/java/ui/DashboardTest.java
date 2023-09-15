@@ -1,11 +1,7 @@
 package ui;
 
-import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebElement;
-
 import java.io.IOException;
 
 import static ui.TestBase.*;
@@ -26,19 +22,14 @@ public class DashboardTest {
         closeApplication();
     }
     public static void scrollDashboardVoid() throws IOException, InterruptedException {
-
         scrollDashboard();
         takeScreenshot(driver);
         Assertions.assertTrue(driver.findElement(By.cssSelector(DashboardElement)).isDisplayed());
     }
     public static void outPrintAndClosedVoid() throws IOException, InterruptedException {
-
         pageTitle();
         Assertions.assertTrue(driver.findElement(By.xpath(Dashboard)).isDisplayed());
         closeApplication();
-
     }
-
-
 }
 

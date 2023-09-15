@@ -1,6 +1,7 @@
 package ui;
 
 import io.qameta.allure.Step;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -8,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 
 import java.io.IOException;
+import java.util.Random;
 
 
 import static ui.helpers.Locators.*;
@@ -103,4 +105,24 @@ public class TestBase {
             closeApplication();
         }
     }
+    public static Object[][] loginData() {
+        Random random = new Random();
+        int count = random.nextInt(10) + 1;
+        Object[][] data = new Object[count][2];
+        for (int i = 0; i < count; i++) {
+            String username = generateRandomString();
+            String password = generateRandomString();
+            data[i][0] = username;
+            data[i][1] = password;
+        }
+        return data;
+    }
+    public static String generateRandomString() {
+        int length = 8;
+        boolean useLetters = true;
+        boolean useNumbers = true;
+        return RandomStringUtils.random(length, useLetters, useNumbers);
+    }
+
+
 }

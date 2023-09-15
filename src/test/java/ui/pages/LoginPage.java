@@ -1,13 +1,10 @@
 package ui.pages;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import java.io.IOException;
 
-import static ui.helpers.ScreenshotListener.takeScreenshot;
 import static ui.helpers.WebDriverContainer.*;
 
 public class LoginPage {
@@ -58,5 +55,14 @@ public class LoginPage {
         passwordInput.sendKeys(FakePassword);
         loginButton.click();
     }
+    public static void loginVoid(String username, String password) {
+        WebElement loginInput = driver.findElement(By.cssSelector(LoginInput));
+        WebElement passwordInput = driver.findElement(By.cssSelector(PasswordInput));
+        WebElement loginButton = driver.findElement(By.xpath(LoginButton));
+        loginInput.click();
+        loginInput.sendKeys(username);
+        passwordInput.click();
+        passwordInput.sendKeys(password);
+        loginButton.click();
+    }
 }
-

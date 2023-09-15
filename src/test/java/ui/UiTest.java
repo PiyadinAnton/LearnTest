@@ -1,14 +1,20 @@
 package ui;
 
 import io.qameta.allure.Description;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import ui.pages.LogPage;
 
 import java.io.IOException;
+import java.util.Random;
 
 import static ui.BuzzTest.createPost;
 import static ui.DashboardTest.*;
 import static ui.LoginTest.*;
 import static ui.PimTest.createTestVoid;
+import static ui.helpers.WebDriverContainer.closeApplication;
+import static ui.helpers.WebDriverContainer.setupApplication;
 
 public class UiTest {
 
@@ -60,5 +66,14 @@ public class UiTest {
     @Description("Поделиться видео")
     public void shareVideoTest() throws IOException, InterruptedException {
         createPost();
+    }
+    @Test
+    @Description("Рандом")
+    public void randomDataTest() throws IOException, InterruptedException {
+
+
+        System.out.println(generateRandomString());
+        closeApplication();
+
     }
 }
