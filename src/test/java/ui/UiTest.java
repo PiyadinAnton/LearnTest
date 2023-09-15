@@ -5,15 +5,17 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
+import static ui.BuzzTest.createPost;
+import static ui.DashboardTest.*;
 import static ui.LoginTest.*;
-import static ui.pages.LoginPage.desLogin;
+import static ui.PimTest.createTestVoid;
 
 public class UiTest {
 
     @Test
     @Description("Поиск элемента")
-    public void fiElementTest() throws InterruptedException, IOException {
-        findElementTest();
+    public void finderElementTest() throws InterruptedException, IOException {
+        findElementTestVoid();
     }
 
     @Test
@@ -30,8 +32,8 @@ public class UiTest {
 
     @Test
     @Description("Создать")
-    public void createTest() throws InterruptedException {
-        create();
+    public void createTest() throws InterruptedException, IOException {
+        createTestVoid();
     }
 
     @Test
@@ -43,7 +45,9 @@ public class UiTest {
     @Test
     @Description("JSСкрипт")
     public void forJSQuestTest() throws IOException, InterruptedException {
-        jSTest();
+        forJSFindElementVoid();
+        scrollDashboardVoid();
+        outPrintAndClosedVoid();
     }
 
     @Test

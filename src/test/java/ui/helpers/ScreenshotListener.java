@@ -1,6 +1,7 @@
 package ui.helpers;
 
 import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -42,7 +43,7 @@ public class ScreenshotListener {
         }
         return true;
     }
-
+    @Step("Отрпавка скриншота для подтверждения теста")
     public static void takeScreenshot(WebDriver driver) throws InterruptedException, IOException {
         Thread.sleep(1500); //слишком быстро грузится страница
         TakesScreenshot screenshot = (TakesScreenshot) driver;
