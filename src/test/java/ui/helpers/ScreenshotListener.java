@@ -12,7 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 
-import static ui.helpers.DataProviderClass.WayToScreen;
+import static ui.helpers.DataClass.WayToScreen;
 import static ui.helpers.WebDriverContainer.driver;
 
 public class ScreenshotListener {

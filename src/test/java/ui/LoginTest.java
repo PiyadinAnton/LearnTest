@@ -26,6 +26,7 @@ public class LoginTest extends TestBase {
         assertLoginButton();
         closeApplication();
     }
+
     public static void fakeLoginTestVoid() throws IOException, InterruptedException {
         setupApplication();
         fakeLoginVoid();
@@ -39,6 +40,7 @@ public class LoginTest extends TestBase {
         desLogin();
         takeScreenshot(driver);
     }
+
     public static void forJSFindElementVoid() {
         setupApplication();
         driver.get(Locators.URL);
@@ -46,9 +48,8 @@ public class LoginTest extends TestBase {
         jsClickButton();
         assertLoginButton();
     }
-    public static void testLogin(String username, String password) throws IOException, InterruptedException {
-        setupApplication();
-        loginData();
+
+    public static void testLogin() {
 
     }
-    }
+}

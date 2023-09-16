@@ -77,11 +77,13 @@ public class TestBase {
     public static void findElementTest() throws InterruptedException, IOException {
         testElementPresence();
     }
+
     @Step("Cкроллить страничку")
     public static void scrollDashboard() throws IOException, InterruptedException {
         scroll();
         takeScreenshot(driver);
     }
+
     @Step("Отправка заголовка страницы в командную строку")
     public static void pageTitle() {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
@@ -93,6 +95,7 @@ public class TestBase {
     public static void fakeLoginVoid() throws IOException, InterruptedException {
         fakeLoginAgain();
     }
+
     @Step("Роняем тест")
     public static void desLogin() throws InterruptedException, IOException {
         login();
@@ -105,24 +108,4 @@ public class TestBase {
             closeApplication();
         }
     }
-    public static Object[][] loginData() {
-        Random random = new Random();
-        int count = random.nextInt(10) + 1;
-        Object[][] data = new Object[count][2];
-        for (int i = 0; i < count; i++) {
-            String username = generateRandomString();
-            String password = generateRandomString();
-            data[i][0] = username;
-            data[i][1] = password;
-        }
-        return data;
-    }
-    public static String generateRandomString() {
-        int length = 8;
-        boolean useLetters = true;
-        boolean useNumbers = true;
-        return RandomStringUtils.random(length, useLetters, useNumbers);
-    }
-
-
 }

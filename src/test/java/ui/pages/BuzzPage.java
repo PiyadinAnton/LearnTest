@@ -3,7 +3,7 @@ package ui.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import static ui.helpers.DataProviderClass.Video;
+import static ui.helpers.DataClass.Video;
 import static ui.helpers.WebDriverContainer.driver;
 public class BuzzPage {
     public static String CssShare = "button.oxd-glass-button:nth-child(2)";
