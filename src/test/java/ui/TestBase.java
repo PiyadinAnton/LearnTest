@@ -1,111 +1,102 @@
 package ui;
 
 import io.qameta.allure.Step;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
-
-import java.io.IOException;
-import java.util.Random;
-
+import ui.helpers.Locators;
+import ui.helpers.ScreenshotListener;
+import ui.helpers.WebDrivers;
+import ui.pages.DashboardPage;
+import ui.pages.LoginPage;
+import ui.pages.PimPage;
 
 import static ui.helpers.Locators.*;
-
-import static ui.helpers.ScreenshotListener.takeScreenshot;
-
-import static ui.pages.DashboardPage.*;
 import static ui.pages.LoginPage.*;
 import static ui.pages.PimPage.*;
 
 
-public class TestBase {
+public class TestBase extends WebDrivers {
     @Step("Проверка Элемента")
-    public static void assertLoginName() {
+    public void assertLoginName(WebDriver driver) {
         WebElement loginElement = driver.findElement(By.xpath(FindName));
         Assertions.assertTrue(loginElement.isDisplayed());
     }
 
     @Step("Проверка Элемента")
-    public static void assertLoginButton() {
+    public void assertLoginButton(WebDriver driver) {
         WebElement loginElement = driver.findElement(By.xpath(LoginButton));
         Assertions.assertTrue(loginElement.isDisplayed());
     }
 
     @Step("Проверка Элемента")
-    public static void assertInvalidCredentials() throws IOException, InterruptedException {
+    public void assertInvalidCredentials(WebDriver driver){
         WebElement loginElement = driver.findElement(By.xpath(InvalidCredentials));
         Assertions.assertTrue(loginElement.isDisplayed());
     }
 
     @Step("Проверка Элемента")
-    public static void assertCheckExpectedElementVoid() {
+    public void assertCheckExpectedElementVoid(WebDriver driver) {
         WebElement expectedElement = driver.findElement(By.xpath(ExpectedElement));
         expectedElement.getText();
         Assertions.assertEquals(expectedElement.getText(), ExpectedTextForAssertEquals);
     }
 
     @Step("Выход из системы")
-    public static void logoutVoid() {
-        setMenuButton();
-        setLogoutButton();
+    public void logoutVoid(WebDriver driver) {
+        Locators locators = new Locators();
+        locators.setMenuButton(driver);
+        locators.setLogoutButton(driver);
     }
 
     @Step("Вход в систему")
-    public static void login() throws InterruptedException, IOException {
-        loginVoid();
-
+    public void login(WebDriver driver) {
+        LoginPage loginPage = new LoginPage();
+        loginPage.loginVoid(driver);
     }
 
     @Step("Создание нового сотрудника")
-    public static void createMan() {
-        setPimCss();
-        setAddXpath();
-        setFindName();
+    public void createMan(WebDriver driver) {
+        DashboardPage dashboardPage = new DashboardPage();
+        PimPage pimPage = new PimPage();
+        dashboardPage.setPimCss(driver);
+        pimPage.setAddXpath(driver);
+        pimPage.setFindName(driver);
     }
 
     @Step("Проверка созданного сотрудника")
-    public static void checkCreateMan() throws InterruptedException {
-        forCheckPim();
-        forNameSearchClick();
-        forThreadSearchElement();
+    public void checkCreateMan(WebDriver driver) throws InterruptedException {
+        PimPage pimPage = new PimPage();
+        pimPage.forCheckPim(driver);
+        pimPage.forNameSearchClick(driver);
+        pimPage.forThreadSearchElement(driver);
     }
 
     @Step("Поиск нужного элемента")
-    public static void findElementTest() throws InterruptedException, IOException {
-        testElementPresence();
+    public void findElementTest(WebDriver driver) {
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.testElementPresence(driver);
     }
 
-    @Step("Cкроллить страничку")
-    public static void scrollDashboard() throws IOException, InterruptedException {
-        scroll();
-        takeScreenshot(driver);
-    }
-
-    @Step("Отправка заголовка страницы в командную строку")
-    public static void pageTitle() {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        String pageTitle = (String) jsExecutor.executeScript("return document.title;");
-        System.out.println("Заголовок страницы: " + pageTitle);
-    }
 
     @Step("Ввод некорректных данных")
-    public static void fakeLoginVoid() throws IOException, InterruptedException {
-        fakeLoginAgain();
+    public void fakeLoginVoid(WebDriver driver){
+        LoginPage loginPage = new LoginPage();
+        loginPage.fakeLoginAgain(driver);
     }
 
     @Step("Роняем тест")
-    public static void desLogin() throws InterruptedException, IOException {
-        login();
+    public void desLogin(WebDriver driver) throws InterruptedException {
+        ScreenshotListener screenshotListener = new ScreenshotListener();
+        login(driver);
         try {
             Assertions.assertEquals(1, 2);
         } catch (AssertionError error) {
-            takeScreenshot(driver);
+            screenshotListener.takeScreenshot(driver);
             throw error;
         } finally {
-            closeApplication();
+            driver.quit();
         }
     }
 }

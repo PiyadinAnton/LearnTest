@@ -3,11 +3,12 @@ package ui.pages;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import ui.helpers.WebDrivers;
 
-import static ui.helpers.WebDriverContainer.*;
 
-public class LoginPage {
+public class LoginPage extends WebDrivers {
     public static String Login = "Admin";
     public static String FakeLogin = "aaa";
     public static String FakePassword = "bbb";
@@ -18,10 +19,10 @@ public class LoginPage {
     public static String FindName = "//div//h6";
     public static String InvalidCredentials = "//div[contains(@class, 'oxd-alert-content')]";
 
-    public static void loginVoid() {
+    public void loginVoid(WebDriver driver) {
         WebElement loginInput = driver.findElement(By.cssSelector(LoginInput));
         WebElement passwordInput = driver.findElement(By.cssSelector(PasswordInput));
-        WebElement loginButton = driver.findElement(By.xpath(LoginButton));
+        WebElement loginButton  = driver.findElement(By.xpath(LoginButton));
         loginInput.click();
         loginInput.sendKeys(Login);
         passwordInput.click();
@@ -29,7 +30,7 @@ public class LoginPage {
         loginButton.click();
     }
 
-    public static void insertLoginData() {
+    public  void insertLoginData(WebDriver driver) {
         WebElement loginInput = driver.findElement(By.cssSelector(LoginInput));
         WebElement passwordInput = driver.findElement(By.cssSelector(PasswordInput));
         loginInput.click();
@@ -38,14 +39,14 @@ public class LoginPage {
         passwordInput.sendKeys(Password);
     }
 
-    public static void jsClickButton() {
+    public void jsClickButton(WebDriver driver) {
         WebElement element = driver.findElement(By.xpath(LoginButton));
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("arguments[0].click();", element);
     }
 
     @Step("Ложный вход в систему")
-    public static void fakeLoginAgain() {
+    public void fakeLoginAgain(WebDriver driver) {
         WebElement loginInput = driver.findElement(By.cssSelector(LoginInput));
         WebElement passwordInput = driver.findElement(By.cssSelector(PasswordInput));
         WebElement loginButton = driver.findElement(By.xpath(LoginButton));
@@ -55,7 +56,7 @@ public class LoginPage {
         passwordInput.sendKeys(FakePassword);
         loginButton.click();
     }
-    public static void loginVoid(String username, String password) {
+    public void loginVoid(String username, String password) {
         WebElement loginInput = driver.findElement(By.cssSelector(LoginInput));
         WebElement passwordInput = driver.findElement(By.cssSelector(PasswordInput));
         WebElement loginButton = driver.findElement(By.xpath(LoginButton));

@@ -1,25 +1,32 @@
 package ui;
 
-import java.io.IOException;
+import io.qameta.allure.Description;
+import org.testng.annotations.Test;
+import ui.helpers.ScreenshotListener;
+import ui.helpers.WebDrivers;
+import ui.pages.BuzzPage;
+import ui.pages.DashboardPage;
 
-import static ui.TestBase.login;
-import static ui.helpers.ScreenshotListener.takeScreenshot;
-import static ui.helpers.WebDriverContainer.*;
-import static ui.pages.BuzzPage.*;
-import static ui.pages.DashboardPage.setBuzz;
-public class BuzzTest {
-    public static void createPost() throws IOException, InterruptedException {
-        setupApplication();
-        login();
-        setBuzz();
+public class BuzzTest extends TestBase {
+    @Test
+    @Description("Поделиться видео")
+    public static void createPostTest() throws InterruptedException {
+        WebDrivers webDrivers = new WebDrivers();
+        BuzzPage buzzPage = new BuzzPage();
+        DashboardPage dashboardPage = new DashboardPage();
+        TestBase testBase = new TestBase();
+        ScreenshotListener screenshotListener = new ScreenshotListener();
+        webDrivers.open();
+        testBase.login(webDrivers.driver);
+        dashboardPage.setBuzz(webDrivers.driver);
         Thread.sleep(3000); //неявные ожидания не ждут, пришлось так
-        setCssShare();
+        buzzPage.setCssShare(webDrivers.driver);
         Thread.sleep(3000);
-        setPasteVideo();
+        buzzPage.setPasteVideo(webDrivers.driver);
         Thread.sleep(3000);
-        setShare();
+        buzzPage.setShare(webDrivers.driver);
         Thread.sleep(3000);
-        takeScreenshot(driver);
-        closeApplication();
+        screenshotListener.takeScreenshot(webDrivers.driver);
+        webDrivers.close();
     }
 }

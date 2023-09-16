@@ -1,35 +1,30 @@
 package ui;
 
+import io.qameta.allure.Description;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
+import org.testng.annotations.Test;
+import ui.helpers.ScreenshotListener;
+import ui.helpers.WebDrivers;
+
 import java.io.IOException;
 
-import static ui.TestBase.*;
-import static ui.helpers.ScreenshotListener.expectedScreenshot;
-import static ui.helpers.ScreenshotListener.takeScreenshot;
-import static ui.helpers.WebDriverContainer.*;
 import static ui.pages.DashboardPage.*;
 
+public class DashboardTest extends TestBase {
+    @Test
+    @Description("Поиск элемента")
+    public  void findElementTest() throws InterruptedException, IOException {
+        ScreenshotListener screenshotListener = new ScreenshotListener();
+        WebDrivers webDrivers = new WebDrivers();
+        TestBase testBase = new TestBase();
 
-public class DashboardTest {
-
-    public static void findElementTestVoid() throws InterruptedException, IOException {
-        setupApplication();
-        login();
-        findElementTest();
-        Assertions.assertTrue(driver.findElement(By.xpath(Dashboard)).isDisplayed());
-        expectedScreenshot();
-        closeApplication();
-    }
-    public static void scrollDashboardVoid() throws IOException, InterruptedException {
-        scrollDashboard();
-        takeScreenshot(driver);
-        Assertions.assertTrue(driver.findElement(By.cssSelector(DashboardElement)).isDisplayed());
-    }
-    public static void outPrintAndClosedVoid() throws IOException, InterruptedException {
-        pageTitle();
-        Assertions.assertTrue(driver.findElement(By.xpath(Dashboard)).isDisplayed());
-        closeApplication();
+        webDrivers.open();
+        testBase.login(webDrivers.driver);
+        testBase.findElementTest(webDrivers.driver);
+        screenshotListener.expectedScreenshot(webDrivers.driver);
+        Assertions.assertTrue(webDrivers.driver.findElement(By.xpath(Dashboard)).isDisplayed());
+        webDrivers.close();
     }
 }
 

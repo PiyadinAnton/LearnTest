@@ -1,8 +1,28 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-<suite name="Test Suite" parallel="methods">
-    <test name="test">
+<suite name="Test Suite" parallel="tests">
+    <test name="Test 1">
         <classes>
-            <class name="ui.UiTest"/>
+            <class name="ui.BuzzTest"/>
+        </classes>
+    </test>
+    <test name="Test 2">
+        <classes>
+            <class name="ui.DashboardTest"/>
+        </classes>
+    </test>
+    <test name="Test 3">
+        <classes>
+            <class name="ui.PimTest"/>
+        </classes>
+    </test>
+    <test name="Test 4">
+        <classes>
+            <class name="ui.RandomTest"/>
+        </classes>
+    </test>
+    <test name="Test 5">
+        <classes>
+            <class name="ui.LoginTest"/>
         </classes>
     </test>
 </suite>

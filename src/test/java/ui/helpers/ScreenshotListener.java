@@ -13,10 +13,9 @@ import java.io.File;
 import java.io.IOException;
 
 import static ui.helpers.DataClass.WayToScreen;
-import static ui.helpers.WebDriverContainer.driver;
 
-public class ScreenshotListener {
-    public static void expectedScreenshot() throws IOException, InterruptedException {
+public class ScreenshotListener extends WebDrivers{
+    public void expectedScreenshot(WebDriver driver) throws IOException, InterruptedException {
         Thread.sleep(1500);//слишком быстро грузится страница
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         BufferedImage screenshotImage = ImageIO.read(screenshotFile);
@@ -30,7 +29,7 @@ public class ScreenshotListener {
         }
     }
 
-    private static boolean compareImages(BufferedImage image1, BufferedImage image2) {
+    private boolean compareImages(BufferedImage image1, BufferedImage image2) {
         if (image1.getWidth() != image2.getWidth() || image1.getHeight() != image2.getHeight()) {
             return false;
         }
@@ -44,7 +43,7 @@ public class ScreenshotListener {
         return true;
     }
     @Step("Отрпавка скриншота для подтверждения теста")
-    public static void takeScreenshot(WebDriver driver) throws InterruptedException, IOException {
+    public void takeScreenshot(WebDriver driver) throws InterruptedException {
         Thread.sleep(1500); //слишком быстро грузится страница
         TakesScreenshot screenshot = (TakesScreenshot) driver;
         byte[] screenshotBytes = screenshot.getScreenshotAs(OutputType.BYTES);
