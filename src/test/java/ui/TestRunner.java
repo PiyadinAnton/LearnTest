@@ -14,15 +14,6 @@ public class TestRunner {
         suite.setName("Test Suite");
         suite.setParallel(XmlSuite.ParallelMode.TESTS);
 
-        XmlSuite suite1 = new XmlSuite();
-        suite.setName("Test Suite2");
-        suite.setParallel(XmlSuite.ParallelMode.TESTS);
-
-        XmlSuite suite2= new XmlSuite();
-        suite.setName("Test Suite3");
-        suite.setParallel(XmlSuite.ParallelMode.TESTS);
-        //можно создавать различные сьюты
-
         XmlTest test1 = new XmlTest(suite);
         test1.setName("Test 1");
         test1.setXmlClasses(Arrays.asList(new XmlClass("ui.BuzzTest")));
