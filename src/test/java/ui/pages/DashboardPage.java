@@ -12,20 +12,14 @@ import ui.helpers.WebDrivers;
 
 import java.io.IOException;
 
-import static ui.helpers.Locators.Pim;
-
 public class DashboardPage extends WebDrivers {
+    Locators locators= new Locators();
     public static String Dashboard = "//h6";
     public static String DashboardElement = "#app .orangehrm-dashboard-widget-header";
 
     public void testElementPresence(WebDriver driver) {
-        driver.get(Locators.URL);
+        driver.get(locators.URL);
         driver.findElement(By.xpath(Dashboard)).isDisplayed();
-    }
-
-    public void setPimCss(WebDriver driver) {
-        WebElement pim = driver.findElement(By.cssSelector(Pim));
-        pim.click();
     }
 
     public void setBuzz(WebDriver driver) {

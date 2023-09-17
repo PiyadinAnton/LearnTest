@@ -1,8 +1,12 @@
 package ui;
 
 import io.qameta.allure.Description;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
 import org.testng.annotations.Test;
 import ui.helpers.WebDrivers;
+
+import static ui.pages.PimPage.ExpectedTextForAssertEquals;
 
 public class PimTest extends TestBase {
     @Test
@@ -14,7 +18,7 @@ public class PimTest extends TestBase {
         testBase.login(webDrivers.driver);
         testBase.createMan(webDrivers.driver);
         testBase.checkCreateMan(webDrivers.driver);
-        testBase.assertCheckExpectedElementVoid(webDrivers.driver);
+        assertExpectedElement(webDrivers.driver);
         webDrivers.close();
     }
 }

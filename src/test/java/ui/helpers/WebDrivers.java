@@ -8,6 +8,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.time.Duration;
 
 public class WebDrivers {
+    Locators locators= new Locators();
 
     public WebDriver driver;
 
@@ -16,7 +17,7 @@ public class WebDrivers {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
-        driver.get(Locators.URL);
+        driver.get(locators.URL);
     }
 
     public void close() {
