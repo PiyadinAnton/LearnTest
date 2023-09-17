@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="tests" name="Failed suite [Test Suite3]">
+  <test thread-count="5" parallel="tests" name="Test 3(failed)">
+    <classes>
+      <class name="ui.PimTest">
+        <methods>
+          <include name="createTest"/>
+          <include name="open"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- ui.PimTest -->
+    </classes>
+  </test> <!-- Test 3(failed) -->
+  <test thread-count="5" parallel="tests" name="Test 1(failed)">
+    <classes>
+      <class name="ui.BuzzTest">
+        <methods>
+          <include name="open"/>
+          <include name="close"/>
+          <include name="createPostTest"/>
+        </methods>
+      </class> <!-- ui.BuzzTest -->
+    </classes>
+  </test> <!-- Test 1(failed) -->
+  <test thread-count="5" parallel="tests" name="Test 2(failed)">
+    <classes>
+      <class name="ui.DashboardTest">
+        <methods>
+          <include name="open"/>
+          <include name="forJSFindElement"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- ui.DashboardTest -->
+    </classes>
+  </test> <!-- Test 2(failed) -->
+  <test thread-count="5" parallel="tests" name="Test 4(failed)">
+    <classes>
+      <class name="ui.LoginTest">
+        <methods>
+          <include name="downTest"/>
+          <include name="open"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- ui.LoginTest -->
+    </classes>
+  </test> <!-- Test 4(failed) -->
+  <test thread-count="5" parallel="tests" name="Test 5(failed)">
+    <classes>
+      <class name="ui.RandomTest">
+        <methods>
+          <include name="open"/>
+          <include name="close"/>
+          <include name="randomLoginVoid" invocation-numbers="0 1 2"/>
+        </methods>
+      </class> <!-- ui.RandomTest -->
+    </classes>
+  </test> <!-- Test 5(failed) -->
+</suite> <!-- Failed suite [Test Suite3] -->

@@ -11,7 +11,6 @@ import java.time.Duration;
 
 public class WebDrivers {
 
-
     public WebDriver driver;
     @BeforeMethod
     public void open() {

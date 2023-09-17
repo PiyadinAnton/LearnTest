@@ -41,6 +41,8 @@ public class RandomTest extends WebDrivers {
     @Description("Рандомный логин")
     public void randomLoginVoid(String username, String password)  {
         LoginPage loginPage = new LoginPage(driver);
+        TestBase testBase = new TestBase();
+        testBase.getUrl(driver);
         WebElement loginInput = driver.findElement(LoginInput);
         WebElement passwordInput = driver.findElement(PasswordInput);
         WebElement loginButton = driver.findElement(LoginButton);

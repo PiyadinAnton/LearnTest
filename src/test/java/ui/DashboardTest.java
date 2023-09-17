@@ -29,6 +29,8 @@ public class DashboardTest extends WebDrivers {
     public void forJSFindElement() throws InterruptedException {
         DashboardPage dashboardPage = new DashboardPage(driver);
         LoginPage loginPage = new LoginPage(driver);
+        TestBase testBase = new TestBase();
+        testBase.getUrl(driver);
         loginPage.insertLoginData();
         loginPage.assertLoginButton();
         loginPage.jsClickButton();
