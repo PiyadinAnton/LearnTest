@@ -3,29 +3,32 @@ package ui.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import ui.helpers.WebDrivers;
+import ui.TestBase;
 
 
-import static ui.helpers.DataClass.Video;
 
-public class BuzzPage extends WebDrivers {
-    public static String CssShare = "button.oxd-glass-button:nth-child(2)";
-    public static String PasteVideo = "(//*[@id=\"app\"]//textarea)[3]";
-    public static String Share = "(//*[@type='submit'])[2]";
-    public static String Buzz = "ul li:nth-child(12) a";
+public class BuzzPage extends TestBase {
+    private WebDriver driver;
+    static By Share = By.xpath( "(//*[@type='submit'])[2]");
+    static By PasteVideo = By.xpath("(//*[@id=\"app\"]//textarea)[3]");
+    static By CssShare = By.cssSelector("button.oxd-glass-button:nth-child(2)");
 
-    public void setShare(WebDriver driver) {
-        WebElement sharePost = driver.findElement(By.xpath(Share));
+    public BuzzPage (WebDriver driver) {
+        this.driver = driver;
+    }
+
+    public void setShare() {
+        WebElement sharePost = driver.findElement(Share);
         sharePost.click();
     }
 
-    public void setCssShare(WebDriver driver) {
-        WebElement share = driver.findElement(By.cssSelector(CssShare));
+    public void setCssShare() {
+        WebElement share = driver.findElement(CssShare);
         share.click();
     }
 
-    public void setPasteVideo(WebDriver driver) {
-        WebElement paste = driver.findElement(By.xpath(PasteVideo));
+    public void setPasteVideo() {
+        WebElement paste = driver.findElement(PasteVideo);
         paste.click();
         paste.sendKeys(Video);
     }

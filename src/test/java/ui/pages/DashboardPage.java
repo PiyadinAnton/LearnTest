@@ -1,34 +1,46 @@
 package ui.pages;
 
+
 import io.qameta.allure.Step;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import ui.helpers.Locators;
+
+import ui.TestBase;
+
 import ui.helpers.ScreenshotListener;
-import ui.helpers.WebDrivers;
 
-import java.io.IOException;
+public class DashboardPage extends TestBase {
+    private WebDriver driver;
 
-public class DashboardPage extends WebDrivers {
-    Locators locators= new Locators();
-    public static String Dashboard = "//h6";
-    public static String DashboardElement = "#app .orangehrm-dashboard-widget-header";
+    public DashboardPage(WebDriver driver) {
+        this.driver = driver;}
+    static By Dashboard = By.xpath("//h6");
+    static By DashboardElement = By.cssSelector("#app .orangehrm-dashboard-widget-header");
+    static By Buzz = By.cssSelector("ul li:nth-child(12) a");
 
-    public void testElementPresence(WebDriver driver) {
-        driver.get(locators.URL);
-        driver.findElement(By.xpath(Dashboard)).isDisplayed();
-    }
-
-    public void setBuzz(WebDriver driver) {
-        WebElement buzz = driver.findElement(By.cssSelector(BuzzPage.Buzz));
+    public void setBuzz() {
+        WebElement buzz = driver.findElement(Buzz);
         buzz.click();
     }
+    @Step("Поиск нужного элемента")
+    public void testElementPresence() {
+        driver.get(URL);
+        driver.findElement(Dashboard).isDisplayed();
+    }
+    @Step
+    public void assertDashboard(){
+        Assertions.assertTrue(driver.findElement(Dashboard).isDisplayed());
+    }
+    @Step
+    public void assertDashboardElement(){Assertions.assertTrue(driver.findElement((DashboardElement)).isDisplayed());}
+
+
 
     @Step("Скроллить")
-    public void scroll(WebDriver driver) throws IOException, InterruptedException {
+    public void scroll() throws InterruptedException {
         ScreenshotListener screenshotListener = new ScreenshotListener();
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
@@ -36,10 +48,11 @@ public class DashboardPage extends WebDrivers {
     }
 
     @Step("Отправка заголовка страницы в командную строку")
-    public void pageTitle(WebDriver driver) {
+    public void pageTitle() {
         JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
         String pageTitle = (String) jsExecutor.executeScript("return document.title;");
         System.out.println("Заголовок страницы: " + pageTitle);
     }
 
 }
+

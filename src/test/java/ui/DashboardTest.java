@@ -1,30 +1,42 @@
 package ui;
 
 import io.qameta.allure.Description;
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
+
 import org.testng.annotations.Test;
 import ui.helpers.ScreenshotListener;
 import ui.helpers.WebDrivers;
+import ui.pages.DashboardPage;
+import ui.pages.LoginPage;
 
 import java.io.IOException;
 
-import static ui.pages.DashboardPage.*;
-
-public class DashboardTest extends TestBase {
+public class DashboardTest extends WebDrivers {
     @Test
     @Description("Поиск элемента")
-    public  void findElementTest() throws InterruptedException, IOException {
+    public void findElementTest() throws InterruptedException, IOException {
         ScreenshotListener screenshotListener = new ScreenshotListener();
-        WebDrivers webDrivers = new WebDrivers();
-        TestBase testBase = new TestBase();
+        LoginPage loginPage = new LoginPage(driver);
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        loginPage.loginVoid();
+        dashboardPage.testElementPresence();
+        screenshotListener.expectedScreenshot(driver);
+        dashboardPage.assertDashboard();
 
-        webDrivers.open();
-        testBase.login(webDrivers.driver);
-        testBase.findElementTest(webDrivers.driver);
-        screenshotListener.expectedScreenshot(webDrivers.driver);
-        Assertions.assertTrue(webDrivers.driver.findElement(By.xpath(Dashboard)).isDisplayed());
-        webDrivers.close();
+    }
+
+    @Test
+    @Description("Js Скрипт")
+    public void forJSFindElement() throws InterruptedException {
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.insertLoginData();
+        loginPage.assertLoginButton();
+        loginPage.jsClickButton();
+        dashboardPage.pageTitle();
+        dashboardPage.assertDashboard();
+        dashboardPage.scroll();
+        dashboardPage.assertDashboardElement();
+
     }
 }
 

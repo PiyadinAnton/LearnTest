@@ -1,6 +1,5 @@
 package ui;
 
-
 import io.qameta.allure.Description;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
@@ -8,12 +7,15 @@ import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ui.helpers.WebDrivers;
+import ui.pages.LoginPage;
 
 import java.util.Random;
 
-import static ui.pages.LoginPage.*;
 
-public class RandomTest extends TestBase{
+public class RandomTest extends WebDrivers {
+    private final By LoginInput = By.cssSelector("[name='username']");
+    private final By PasswordInput = By.cssSelector("[name='password']");
+    private final By LoginButton = By.xpath("//div/button");
     @DataProvider(name = "loginData")
     public Object[][] loginData() {
 
@@ -38,18 +40,17 @@ public class RandomTest extends TestBase{
     @Test(dataProvider = "loginData")
     @Description("Рандомный логин")
     public void randomLoginVoid(String username, String password)  {
-        WebDrivers webDrivers = new WebDrivers();
-        webDrivers.open();
-        WebElement loginInput = webDrivers.driver.findElement(By.cssSelector(LoginInput));
-        WebElement passwordInput = webDrivers.driver.findElement(By.cssSelector(PasswordInput));
-        WebElement loginButton = webDrivers.driver.findElement(By.xpath(LoginButton));
+        LoginPage loginPage = new LoginPage(driver);
+        WebElement loginInput = driver.findElement(LoginInput);
+        WebElement passwordInput = driver.findElement(PasswordInput);
+        WebElement loginButton = driver.findElement(LoginButton);
 
         loginInput.click();
         loginInput.sendKeys(username);
         passwordInput.click();
         passwordInput.sendKeys(password);
         loginButton.click();
-        assertInvalidCredentials(webDrivers.driver);
-        webDrivers.close();
+        loginPage.assertInvalidCredentials();
+        close();
     }
 }

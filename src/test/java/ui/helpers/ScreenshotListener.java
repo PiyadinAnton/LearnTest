@@ -4,7 +4,9 @@ import io.qameta.allure.Allure;
 import io.qameta.allure.Step;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 import org.openqa.selenium.WebDriver;
+import ui.TestBase;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -12,9 +14,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 
-import static ui.helpers.DataClass.WayToScreen;
-
-public class ScreenshotListener extends WebDrivers{
+public class ScreenshotListener extends TestBase {
     public void expectedScreenshot(WebDriver driver) throws IOException, InterruptedException {
         Thread.sleep(1500);//слишком быстро грузится страница
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

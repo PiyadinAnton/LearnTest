@@ -6,27 +6,26 @@ import ui.helpers.ScreenshotListener;
 import ui.helpers.WebDrivers;
 import ui.pages.BuzzPage;
 import ui.pages.DashboardPage;
+import ui.pages.LoginPage;
 
-public class BuzzTest extends TestBase {
+public class BuzzTest extends WebDrivers {
     @Test
     @Description("Поделиться видео")
-    public static void createPostTest() throws InterruptedException {
-        WebDrivers webDrivers = new WebDrivers();
-        BuzzPage buzzPage = new BuzzPage();
-        DashboardPage dashboardPage = new DashboardPage();
-        TestBase testBase = new TestBase();
+    public void createPostTest() throws InterruptedException {
+        BuzzPage buzzPage = new BuzzPage(driver);
+        LoginPage loginPage = new LoginPage(driver);
+        DashboardPage dashboardPage = new DashboardPage(driver);
         ScreenshotListener screenshotListener = new ScreenshotListener();
-        webDrivers.open();
-        testBase.login(webDrivers.driver);
-        dashboardPage.setBuzz(webDrivers.driver);
+        loginPage.loginVoid();
+        dashboardPage.setBuzz();
         Thread.sleep(3000); //неявные ожидания не ждут, пришлось так
-        buzzPage.setCssShare(webDrivers.driver);
+        buzzPage.setCssShare();
         Thread.sleep(3000);
-        buzzPage.setPasteVideo(webDrivers.driver);
+        buzzPage.setPasteVideo();
         Thread.sleep(3000);
-        buzzPage.setShare(webDrivers.driver);
+        buzzPage.setShare();
         Thread.sleep(3000);
-        screenshotListener.takeScreenshot(webDrivers.driver);
-        webDrivers.close();
+        screenshotListener.takeScreenshot(driver);
+        close();
     }
 }
