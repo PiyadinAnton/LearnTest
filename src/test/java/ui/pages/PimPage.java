@@ -16,13 +16,13 @@ public class PimPage extends TestBase {
     }
     public String URLPim = "https://opensource-demo.orangehrmlive.com/web/index.php/pim/viewEmployeeList";
     static By Pim = By.cssSelector("ul li:nth-child(2) a");
-    static By PimXpath = By.xpath("//div/div[1]/div/aside/nav/div[2]/ul/li[2]/a");
-    static By Add = By.xpath("/html/body/div/div[1]/div[2]/div[2]/div/div[2]/div[1]/button");
+    static By PimXpath = By.xpath("//a[@class='oxd-main-menu-item active']");
+    static By Add = By.xpath("//button[contains(@class, 'oxd-button--secondary') and @type='button']");
     static By SearchFirstName =By.cssSelector( "[name=\"firstName\"]");
     static By SearchMiddleName = By.cssSelector("[name=\"middleName\"]");
     static By SearchLastName = By.cssSelector("[name=\"lastName\"]");
     static By Save = By.xpath("//*[@type=\"submit\"]");
-    static By NameSearch = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[1]/div/div[2]/div/div/input");
+    static By NameSearch = By.xpath("//*[@placeholder='Type for hints...']");
     static By Search = By.cssSelector("form [type=submit]");
     static String CreateFirstName = "Игорь";
     static String CreateMiddleName = "Иванов";
