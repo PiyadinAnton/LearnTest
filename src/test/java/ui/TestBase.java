@@ -7,7 +7,7 @@ import ui.helpers.WebDrivers;
 
 public class TestBase extends WebDrivers {
     public String URL = "https://opensource-demo.orangehrmlive.com/";
-    public String WayToScreen = "C:\\Games\\screenshot\\myscreenshot.png";
+    public String WayToScreen = "C:\\Users\\user\\IdeaProjects\\FinalHomework\\src\\test\\java\\ui\\helpers\\screen\\myscreenshot.png";
     public String Video = "https://www.youtube.com/watch?v=Llyp-bN-wBE&ab_channel=TESFAN";
 
     public static String CssShare = "button.oxd-glass-button:nth-child(2)";
