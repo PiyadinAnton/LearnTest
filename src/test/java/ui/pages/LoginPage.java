@@ -12,11 +12,11 @@ import ui.helpers.ScreenshotListener;
 public class LoginPage extends TestBase {
     private final By LoginInput = By.cssSelector("[name='username']");
     private final By PasswordInput = By.cssSelector("[name='password']");
-    private final By LoginButton = By.xpath("//div/button");
-    static By FindName = By.xpath("//div//h6");
-    static By InvalidCredentials = By.xpath("//div[contains(@class, 'oxd-alert-content')]");
-    static By LogoutButton = By.xpath("//div//a[@href=\"/web/index.php/auth/logout\"]");
-    static By Menu = By.xpath("//div//p[@class='oxd-userdropdown-name']");
+    private final By LoginButton = By.xpath("//*/button");
+    static By FindName = By.xpath("//h6");
+    static By InvalidCredentials = By.xpath("//*[contains(@class, 'oxd-alert-content')]");
+    static By LogoutButton = By.xpath("//*[@href=\"/web/index.php/auth/logout\"]");
+    static By Menu = By.xpath("//*[@class='oxd-userdropdown-name']");
     final String Login = "Admin";
     final String FakeLogin = "aaa";
     final String Password = "admin123";
