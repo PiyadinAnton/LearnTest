@@ -22,7 +22,7 @@ public class PimPage extends TestBase {
     static By SearchMiddleName = By.cssSelector("[name=\"middleName\"]");
     static By SearchLastName = By.cssSelector("[name=\"lastName\"]");
     static By Save = By.xpath("//*[@type=\"submit\"]");
-    static By NameSearch = By.xpath("//*[@placeholder='Type for hints...']");
+    static By NameSearch = By.xpath("//*[@placeholder='Type for hints...'][1]");
     static By Search = By.cssSelector("form [type=submit]");
     static String CreateFirstName = "Игорь";
     static String CreateMiddleName = "Иванов";
