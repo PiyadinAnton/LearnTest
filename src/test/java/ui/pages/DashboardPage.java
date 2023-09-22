@@ -37,8 +37,6 @@ public class DashboardPage extends TestBase {
     @Step
     public void assertDashboardElement(){Assertions.assertTrue(driver.findElement((DashboardElement)).isDisplayed());}
 
-
-
     @Step("Скроллить")
     public void scroll() throws InterruptedException {
         ScreenshotListener screenshotListener = new ScreenshotListener();

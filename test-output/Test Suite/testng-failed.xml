@@ -6,8 +6,32 @@
       <class name="ui.PimTest">
         <methods>
           <include name="createTest"/>
+          <include name="open"/>
+          <include name="close"/>
         </methods>
       </class> <!-- ui.PimTest -->
     </classes>
   </test> <!-- Test 3(failed) -->
+  <test thread-count="5" parallel="tests" name="Test 2(failed)">
+    <classes>
+      <class name="ui.DashboardTest">
+        <methods>
+          <include name="open"/>
+          <include name="findElementTest"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- ui.DashboardTest -->
+    </classes>
+  </test> <!-- Test 2(failed) -->
+  <test thread-count="5" parallel="tests" name="Test 4(failed)">
+    <classes>
+      <class name="ui.LoginTest">
+        <methods>
+          <include name="downTest"/>
+          <include name="open"/>
+          <include name="close"/>
+        </methods>
+      </class> <!-- ui.LoginTest -->
+    </classes>
+  </test> <!-- Test 4(failed) -->
 </suite> <!-- Failed suite [Test Suite] -->
