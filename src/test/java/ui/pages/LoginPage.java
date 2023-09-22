@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import ui.TestBase;
 import ui.helpers.ScreenshotListener;
 
+
 public class LoginPage extends TestBase {
     private final By LoginInput = By.cssSelector("[name='username']");
     private final By PasswordInput = By.cssSelector("[name='password']");
@@ -110,6 +111,14 @@ public class LoginPage extends TestBase {
         } catch (AssertionError error) {
             screenshotListener.takeScreenshot(driver);
             throw error;
-        }
+        }}
+        public void findClosedElement() throws InterruptedException {
+        By Claim = By.xpath("//*[@href=/web/index.php/claim/viewClaimModule]");
+            loginVoid();
+            WebElement claim = driver.findElement(Claim);
+            claim.click();
+            WebElement button = driver.findElement(By.xpath("//*[@class=\"oxd-select-text-input\"][1]"));
+            button.click();
+            driver.wait( 10000);
 }
 }
