@@ -8,10 +8,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ui.helpers.WebDrivers;
 import ui.pages.LoginPage;
-
 import java.util.Random;
-
-
 public class RandomTest extends WebDrivers {
     private final By LoginInput = By.cssSelector("[name='username']");
     private final By PasswordInput = By.cssSelector("[name='password']");

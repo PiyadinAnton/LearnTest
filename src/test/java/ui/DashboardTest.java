@@ -21,7 +21,6 @@ public class DashboardTest extends WebDrivers {
         dashboardPage.testElementPresence();
         screenshotListener.expectedScreenshot(driver);
         dashboardPage.assertDashboard();
-
     }
 
     @Test
@@ -38,7 +37,6 @@ public class DashboardTest extends WebDrivers {
         dashboardPage.assertDashboard();
         dashboardPage.scroll();
         dashboardPage.assertDashboardElement();
-
     }
 }
 

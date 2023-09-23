@@ -4,9 +4,7 @@ import io.qameta.allure.Description;
 import org.testng.annotations.Test;
 import ui.helpers.ScreenshotListener;
 import ui.helpers.WebDrivers;
-
 import ui.pages.LoginPage;
-
 
 public class LoginTest extends WebDrivers {
     @Test
@@ -21,7 +19,6 @@ public class LoginTest extends WebDrivers {
     @Description("Разлогин")
     public void logoutTest() {
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.loginVoid();
         loginPage.logoutVoid();
         loginPage.assertLoginButton();
@@ -33,12 +30,9 @@ public class LoginTest extends WebDrivers {
     public void fakeLoginTest() throws InterruptedException {
         ScreenshotListener screenshotListener = new ScreenshotListener();
         LoginPage loginPage = new LoginPage(driver);
-
         loginPage.fakeLoginVoid();
         loginPage.assertInvalidCredentials();
         screenshotListener.takeScreenshot(driver);
-
-
     }
 
     @Test
@@ -47,5 +41,4 @@ public class LoginTest extends WebDrivers {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.desLogin();
     }
-
 }

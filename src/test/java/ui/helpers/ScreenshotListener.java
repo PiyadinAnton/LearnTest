@@ -42,6 +42,7 @@ public class ScreenshotListener extends TestBase {
         }
         return true;
     }
+
     @Step("Отрпавка скриншота для подтверждения теста")
     public void takeScreenshot(WebDriver driver) throws InterruptedException {
         Thread.sleep(1500); //слишком быстро грузится страница

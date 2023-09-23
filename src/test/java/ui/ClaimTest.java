@@ -1,7 +1,6 @@
 package ui;
 
 import io.qameta.allure.Description;
-import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 import ui.helpers.WebDrivers;
 import ui.pages.ClaimPage;
@@ -20,6 +19,5 @@ public class ClaimTest extends WebDrivers {
         claimPage.createInEmployerName();
         claimPage.submitClaim();
         claimPage.assertAlice();
-
     }
 }

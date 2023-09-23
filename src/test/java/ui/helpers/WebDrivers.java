@@ -12,6 +12,7 @@ import java.time.Duration;
 public class WebDrivers {
 
     public WebDriver driver;
+
     @BeforeMethod
     public void open() {
         ChromeDriverManager.getInstance().setup();
@@ -19,6 +20,7 @@ public class WebDrivers {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
     }
+
     @AfterMethod
     public void close() {
         driver.quit();
