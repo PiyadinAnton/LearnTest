@@ -5,15 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ui.TestBase;
 
-
-
 public class BuzzPage extends TestBase {
     private WebDriver driver;
-    static By Share = By.xpath( "(//*[@type='submit'])[2]");
-    static By PasteVideo = By.xpath("(//*[@id=\"app\"]//textarea)[3]");
-    static By CssShare = By.cssSelector("button.oxd-glass-button:nth-child(2)");
+    private final By Share = By.xpath("(//*[@type='submit'])[2]");
+    private final By PasteVideo = By.xpath("(//*[@id=\"app\"]//textarea)[3]");
+    private final By CssShare = By.cssSelector("button.oxd-glass-button:nth-child(2)");
 
-    public BuzzPage (WebDriver driver) {
+    public BuzzPage(WebDriver driver) {
         this.driver = driver;
     }
 
@@ -32,6 +30,4 @@ public class BuzzPage extends TestBase {
         paste.click();
         paste.sendKeys(Video);
     }
-
-
 }

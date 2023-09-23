@@ -16,26 +16,33 @@ public class DashboardPage extends TestBase {
     private WebDriver driver;
 
     public DashboardPage(WebDriver driver) {
-        this.driver = driver;}
-    static By Dashboard = By.xpath("//h6");
-    static By DashboardElement = By.cssSelector("#app .orangehrm-dashboard-widget-header");
-    static By Buzz = By.cssSelector("ul li:nth-child(12) a");
+        this.driver = driver;
+    }
+
+    private final By Dashboard = By.xpath("//h6");
+    private final By DashboardElement = By.cssSelector("#app .orangehrm-dashboard-widget-header");
+    private final By Buzz = By.cssSelector("ul li:nth-child(12) a");
 
     public void setBuzz() {
         WebElement buzz = driver.findElement(Buzz);
         buzz.click();
     }
+
     @Step("Поиск нужного элемента")
     public void testElementPresence() {
         driver.get(URL);
         driver.findElement(Dashboard).isDisplayed();
     }
+
     @Step
-    public void assertDashboard(){
+    public void assertDashboard() {
         Assertions.assertTrue(driver.findElement(Dashboard).isDisplayed());
     }
+
     @Step
-    public void assertDashboardElement(){Assertions.assertTrue(driver.findElement((DashboardElement)).isDisplayed());}
+    public void assertDashboardElement() {
+        Assertions.assertTrue(driver.findElement((DashboardElement)).isDisplayed());
+    }
 
     @Step("Скроллить")
     public void scroll() throws InterruptedException {
@@ -51,6 +58,5 @@ public class DashboardPage extends TestBase {
         String pageTitle = (String) jsExecutor.executeScript("return document.title;");
         System.out.println("Заголовок страницы: " + pageTitle);
     }
-
 }
 

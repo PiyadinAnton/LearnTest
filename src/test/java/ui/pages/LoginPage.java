@@ -9,29 +9,30 @@ import org.openqa.selenium.WebElement;
 import ui.TestBase;
 import ui.helpers.ScreenshotListener;
 
-
 public class LoginPage extends TestBase {
     private final By LoginInput = By.cssSelector("[name='username']");
     private final By PasswordInput = By.cssSelector("[name='password']");
     private final By LoginButton = By.xpath("//*/button");
-    static By FindName = By.xpath("//h6");
-    static By InvalidCredentials = By.xpath("//*[contains(@class, 'oxd-alert-content')]");
-    static By LogoutButton = By.xpath("//*[@href=\"/web/index.php/auth/logout\"]");
-    static By Menu = By.xpath("//*[@class='oxd-userdropdown-name']");
-    final String Login = "Admin";
-    final String FakeLogin = "aaa";
-    final String Password = "admin123";
-    final String FakePassword = "bbb";
+    private final By FindName = By.xpath("//h6");
+    private final By InvalidCredentials = By.xpath("//*[contains(@class, 'oxd-alert-content')]");
+    private final By LogoutButton = By.xpath("//*[@href=\"/web/index.php/auth/logout\"]");
+    private final By Menu = By.xpath("//*[@class='oxd-userdropdown-name']");
+    private final String Login = "Admin";
+    private final String FakeLogin = "aaa";
+    private final String Password = "admin123";
+    private final String FakePassword = "bbb";
     private WebDriver driver;
 
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
+
     @Step("Проверка Элемента")
     public void assertLoginName() {
         WebElement loginElement = driver.findElement(FindName);
         Assertions.assertTrue(loginElement.isDisplayed());
     }
+
     @Step("Вход в систему")
     public void loginVoid() {
         getUrl(driver);
@@ -44,6 +45,7 @@ public class LoginPage extends TestBase {
         passwordInput.sendKeys(Password);
         loginButton.click();
     }
+
     public void setMenuButton() {
         driver.findElement(Menu).click();
     }
@@ -92,16 +94,19 @@ public class LoginPage extends TestBase {
         WebElement loginElement = driver.findElement(LoginButton);
         Assertions.assertTrue(loginElement.isDisplayed());
     }
+
     @Step("Проверка Элемента")
     public void assertInvalidCredentials() {
         WebElement loginElement = driver.findElement(InvalidCredentials);
         Assertions.assertTrue(loginElement.isDisplayed());
     }
+
     @Step("Ввод некорректных данных")
     public void fakeLoginVoid() {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.fakeLoginAgain();
     }
+
     @Step("Роняем тест")
     public void desLogin() throws InterruptedException {
         ScreenshotListener screenshotListener = new ScreenshotListener();
@@ -111,14 +116,6 @@ public class LoginPage extends TestBase {
         } catch (AssertionError error) {
             screenshotListener.takeScreenshot(driver);
             throw error;
-        }}
-        public void findClosedElement() throws InterruptedException {
-        By Claim = By.xpath("//*[@href=/web/index.php/claim/viewClaimModule]");
-            loginVoid();
-            WebElement claim = driver.findElement(Claim);
-            claim.click();
-            WebElement button = driver.findElement(By.xpath("//*[@class=\"oxd-select-text-input\"][1]"));
-            button.click();
-            driver.wait( 10000);
-}
+        }
+    }
 }
