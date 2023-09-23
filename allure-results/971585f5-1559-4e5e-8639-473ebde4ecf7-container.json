@@ -1,1 +1,0 @@
-{"uuid":"971585f5-1559-4e5e-8639-473ebde4ecf7","name":"ui.helpers.WebDrivers.close","children":["579d3a15-d83d-42d1-ba07-1ebd98e94bec"],"description":"","befores":[],"afters":[{"name":"close","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1694957677258,"stop":1694957677328}],"start":1694957677258,"stop":1694957677328}
