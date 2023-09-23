@@ -1,10 +1,11 @@
 package ui.pages;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import ui.TestBase;
 
 
@@ -79,7 +80,7 @@ public class PimPage extends TestBase {
 
     @Step("Проверка ожидаемого элемента")
     public void assertExpectedElement() {
-        Assertions.assertEquals(driver.findElement((ExpectedElement)).getText(), ExpectedTextForAssertEquals);
+        Assert.assertEquals(driver.findElement((ExpectedElement)).getText(), ExpectedTextForAssertEquals);
     }
 
     @Step("Проверка созданного сотрудника")

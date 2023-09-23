@@ -1,11 +1,11 @@
 package ui.pages;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import ui.TestBase;
 import ui.helpers.ScreenshotListener;
 
@@ -30,7 +30,7 @@ public class LoginPage extends TestBase {
     @Step("Проверка Элемента")
     public void assertLoginName() {
         WebElement loginElement = driver.findElement(FindName);
-        Assertions.assertTrue(loginElement.isDisplayed());
+        Assert.assertTrue(loginElement.isDisplayed());
     }
 
     @Step("Вход в систему")
@@ -92,13 +92,13 @@ public class LoginPage extends TestBase {
     @Step("Проверка Элемента")
     public void assertLoginButton() {
         WebElement loginElement = driver.findElement(LoginButton);
-        Assertions.assertTrue(loginElement.isDisplayed());
+        Assert.assertTrue(loginElement.isDisplayed());
     }
 
     @Step("Проверка Элемента")
     public void assertInvalidCredentials() {
         WebElement loginElement = driver.findElement(InvalidCredentials);
-        Assertions.assertTrue(loginElement.isDisplayed());
+        Assert.assertTrue(loginElement.isDisplayed());
     }
 
     @Step("Ввод некорректных данных")
@@ -112,7 +112,7 @@ public class LoginPage extends TestBase {
         ScreenshotListener screenshotListener = new ScreenshotListener();
         loginVoid();
         try {
-            Assertions.assertEquals(1, 2);
+            Assert.assertEquals(1, 2);
         } catch (AssertionError error) {
             screenshotListener.takeScreenshot(driver);
             throw error;

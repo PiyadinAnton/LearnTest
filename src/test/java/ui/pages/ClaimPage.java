@@ -1,11 +1,11 @@
 package ui.pages;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import ui.TestBase;
 public class ClaimPage extends TestBase {
     private WebDriver driver;
@@ -50,7 +50,7 @@ public class ClaimPage extends TestBase {
     }
     @Step("Проверочка")
     public void assertionElement(){
-        Assertions.assertTrue(driver.findElement((ExpectedEl)).isDisplayed());
+        Assert.assertTrue(driver.findElement((ExpectedEl)).isDisplayed());
 
     }
     @Step("Написать ремарку")
@@ -83,7 +83,7 @@ public class ClaimPage extends TestBase {
     }
     @Step("Assert")
     public void assertAlice(){
-        Assertions.assertTrue(driver.findElement(assertAlice).isDisplayed());
+        Assert.assertTrue(driver.findElement(assertAlice).isDisplayed());
     }
 }
 

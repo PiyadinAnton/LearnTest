@@ -2,12 +2,12 @@ package ui.pages;
 
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import org.testng.Assert;
 import ui.TestBase;
 
 import ui.helpers.ScreenshotListener;
@@ -37,12 +37,12 @@ public class DashboardPage extends TestBase {
 
     @Step
     public void assertDashboard() {
-        Assertions.assertTrue(driver.findElement(Dashboard).isDisplayed());
+        Assert.assertTrue(driver.findElement(Dashboard).isDisplayed());
     }
 
     @Step
     public void assertDashboardElement() {
-        Assertions.assertTrue(driver.findElement((DashboardElement)).isDisplayed());
+        Assert.assertTrue(driver.findElement((DashboardElement)).isDisplayed());
     }
 
     @Step("Скроллить")
