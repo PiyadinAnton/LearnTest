@@ -10,7 +10,7 @@ public class LoginTest extends WebDrivers {
     @Test
     @Description("Логин")
     public void loginTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
         loginPage.loginVoid();
         loginPage.assertLoginName();
     }
@@ -18,7 +18,7 @@ public class LoginTest extends WebDrivers {
     @Test
     @Description("Разлогин")
     public void logoutTest() {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
         loginPage.loginVoid();
         loginPage.logoutVoid();
         loginPage.assertLoginButton();
@@ -29,16 +29,16 @@ public class LoginTest extends WebDrivers {
     @Description("Негативный")
     public void fakeLoginTest() throws InterruptedException {
         ScreenshotListener screenshotListener = new ScreenshotListener();
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
         loginPage.fakeLoginVoid();
         loginPage.assertInvalidCredentials();
-        screenshotListener.takeScreenshot(driver);
+        screenshotListener.takeScreenshot();
     }
 
     @Test
     @Description("Уронить тест для отправки скриншота")
     public void downTest() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
+        LoginPage loginPage = new LoginPage();
         loginPage.desLogin();
     }
 }

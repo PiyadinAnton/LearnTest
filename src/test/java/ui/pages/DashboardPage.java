@@ -1,63 +1,49 @@
 package ui.pages;
 
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
 import org.testng.Assert;
 import ui.TestBase;
 
-import ui.helpers.ScreenshotListener;
+import static com.codeborne.selenide.Selenide.*;
 
 public class DashboardPage extends TestBase {
-    private WebDriver driver;
 
-    public DashboardPage(WebDriver driver) {
-        this.driver = driver;
-    }
-
-    private final By Dashboard = By.xpath("//h6");
-    private final By DashboardElement = By.cssSelector("#app .orangehrm-dashboard-widget-header");
-    private final By Buzz = By.cssSelector("ul li:nth-child(12) a");
+    private final SelenideElement dashboard = $x("//h6");
+    private final SelenideElement dashboardElement = $("#app .orangehrm-dashboard-widget-header");
+    private final SelenideElement buzz = $("ul li:nth-child(12) a");
 
     public void setBuzz() {
-        WebElement buzz = driver.findElement(Buzz);
         buzz.click();
     }
 
     @Step("Поиск нужного элемента")
     public void testElementPresence() {
-        TestBase testBase = new TestBase();
-        testBase.getUrl(driver);
-        driver.findElement(Dashboard).isDisplayed();
+        getUrl();
     }
 
-    @Step
-    public void assertDashboard() {
-        Assert.assertTrue(driver.findElement(Dashboard).isDisplayed());
+    @Step("Проверка наличия элемента")
+    public void assertDashboard() throws InterruptedException {
+        synchronized(dashboard){
+        dashboard.wait(1500);}
+        Assert.assertTrue(dashboard.isDisplayed());
     }
 
-    @Step
+    @Step("Проверка наличия элемента")
     public void assertDashboardElement() {
-        Assert.assertTrue(driver.findElement((DashboardElement)).isDisplayed());
+        Assert.assertTrue(dashboardElement.isDisplayed());
     }
 
     @Step("Скроллить")
-    public void scroll() throws InterruptedException {
-        ScreenshotListener screenshotListener = new ScreenshotListener();
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight);");
-        screenshotListener.takeScreenshot(driver);
+    public void scroll() {
+        executeJavaScript("window.scrollTo(0, document.body.scrollHeight);");
+        screenshot("scroll");
     }
 
     @Step("Отправка заголовка страницы в командную строку")
     public void pageTitle() {
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-        String pageTitle = (String) jsExecutor.executeScript("return document.title;");
+        String pageTitle = executeJavaScript("return document.title;");
         System.out.println("Заголовок страницы: " + pageTitle);
     }
 }
-

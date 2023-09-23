@@ -12,20 +12,15 @@ public class BuzzTest extends WebDrivers {
     @Test
     @Description("Поделиться видео")
     public void createPostTest() throws InterruptedException {
-        BuzzPage buzzPage = new BuzzPage(driver);
-        LoginPage loginPage = new LoginPage(driver);
-        DashboardPage dashboardPage = new DashboardPage(driver);
+        BuzzPage buzzPage = new BuzzPage();
+        LoginPage loginPage = new LoginPage();
+        DashboardPage dashboardPage = new DashboardPage();
         ScreenshotListener screenshotListener = new ScreenshotListener();
         loginPage.loginVoid();
         dashboardPage.setBuzz();
-        Thread.sleep(3000); //неявные ожидания не ждут, пришлось так
         buzzPage.setCssShare();
-        Thread.sleep(3000);
         buzzPage.setPasteVideo();
-        Thread.sleep(3000);
         buzzPage.setShare();
-        Thread.sleep(3000);
-        screenshotListener.takeScreenshot(driver);
-        close();
+        screenshotListener.takeScreenshot();
     }
 }

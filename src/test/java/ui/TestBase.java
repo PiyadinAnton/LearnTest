@@ -1,12 +1,14 @@
 package ui;
 
-import org.openqa.selenium.WebDriver;
+import io.qameta.allure.Step;
 import ui.helpers.WebDrivers;
+
+import static com.codeborne.selenide.Selenide.open;
 
 public class TestBase extends WebDrivers {
     private final String URL = "https://opensource-demo.orangehrmlive.com/";
-
-    public void getUrl(WebDriver driver) {
-        driver.get(URL);
+@Step("Открыть сайт")
+    public void getUrl() {
+        open(URL);
     }
 }

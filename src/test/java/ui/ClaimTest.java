@@ -10,14 +10,16 @@ public class ClaimTest extends WebDrivers {
     @Test
     @Description("Тыкаем")
     public void claimTest() throws InterruptedException {
-        LoginPage loginPage = new LoginPage(driver);
-        ClaimPage claimPage = new ClaimPage(driver);
+        LoginPage loginPage = new LoginPage();
+        ClaimPage claimPage = new ClaimPage();
         loginPage.loginVoid();
-        claimPage.claimAssignAndSelect();
-        claimPage.assertionElement();
-        claimPage.createInRemarkText();
+        claimPage.claimAssign();
+        claimPage.selectV2();
         claimPage.createInEmployerName();
+        claimPage.selectAccommodation();
+        claimPage.createInRemarkText();
         claimPage.submitClaim();
         claimPage.assertAlice();
+        claimPage.assertionElement();
     }
 }

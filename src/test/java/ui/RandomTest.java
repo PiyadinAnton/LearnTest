@@ -1,18 +1,21 @@
 package ui;
 
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Description;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ui.helpers.WebDrivers;
 import ui.pages.LoginPage;
 import java.util.Random;
+
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.$x;
+
 public class RandomTest extends WebDrivers {
-    private final By LoginInput = By.cssSelector("[name='username']");
-    private final By PasswordInput = By.cssSelector("[name='password']");
-    private final By LoginButton = By.xpath("//div/button");
+    private final SelenideElement LoginInput = $("[name='username']");
+    private final SelenideElement PasswordInput = $("[name='password']");
+    private final SelenideElement LoginButton = $x("//div/button");
     @DataProvider(name = "loginData")
     public Object[][] loginData() {
 
@@ -36,20 +39,15 @@ public class RandomTest extends WebDrivers {
     }
     @Test(dataProvider = "loginData")
     @Description("Рандомный логин")
-    public void randomLoginVoid(String username, String password)  {
-        LoginPage loginPage = new LoginPage(driver);
+    public void randomLoginVoid(String username, String password) throws InterruptedException {
+        LoginPage loginPage = new LoginPage();
         TestBase testBase = new TestBase();
-        testBase.getUrl(driver);
-        WebElement loginInput = driver.findElement(LoginInput);
-        WebElement passwordInput = driver.findElement(PasswordInput);
-        WebElement loginButton = driver.findElement(LoginButton);
-
-        loginInput.click();
-        loginInput.sendKeys(username);
-        passwordInput.click();
-        passwordInput.sendKeys(password);
-        loginButton.click();
+        testBase.getUrl();
+        LoginInput.click();
+        LoginInput.sendKeys(username);
+        PasswordInput.click();
+        PasswordInput.sendKeys(password);
+        LoginButton.click();
         loginPage.assertInvalidCredentials();
-        close();
     }
 }

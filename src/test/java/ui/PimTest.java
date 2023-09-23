@@ -10,8 +10,8 @@ public class PimTest extends WebDrivers {
     @Test
     @Description("Создать")
     public void createTest() throws InterruptedException {
-        PimPage pimPage = new PimPage(driver);
-        LoginPage loginPage = new LoginPage(driver);
+        PimPage pimPage = new PimPage();
+        LoginPage loginPage = new LoginPage();
         loginPage.loginVoid();
         pimPage.createMan();
         pimPage.checkCreateMan();

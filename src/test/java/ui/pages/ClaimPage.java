@@ -1,89 +1,93 @@
 package ui.pages;
 
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import ui.TestBase;
+
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.webdriver;
+
 public class ClaimPage extends TestBase {
-    private WebDriver driver;
-    public ClaimPage (WebDriver driver) {
-        this.driver = driver;}
+    private final SelenideElement select = $x("//*[contains(text(), 'Select')][1]");
+    private final SelenideElement selectVer2 = $x("//*[@id=\"app\"]//*/*[1]/div[2]/*/div[2]/*/div[1]");
 
-    private final By Select = By.xpath("//*[contains(text(), 'Select')][1]");
-    private final By SelectVer2 = By.xpath("//div[@class='oxd-select-text oxd-select-text--active']/div[@class='oxd-select-text-input'][1]");
+    private final SelenideElement claim = $x("//*[@href='/web/index.php/claim/viewClaimModule']");
 
-    private final By Claim = By.xpath("//*[@href='/web/index.php/claim/viewClaimModule']");
+    private final SelenideElement expectedEl = $x("//*[contains(text(), 'Accommodation')]");
 
-    private final By ExpectedEl = By.xpath("//*[contains(text(), 'Accommodation')]");
+    private final SelenideElement remark = $x("//*[@class=\"oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical\"]");
 
-    private final By Remark = By.xpath("//*[@class=\"oxd-textarea oxd-textarea--active oxd-textarea--resize-vertical\"]");
+    private final SelenideElement assign = $x("//*[@class=\"orangehrm-header-container\"]//*[@class=\"oxd-button oxd-button--medium oxd-button--secondary\"]");
 
-    private final By Assign = By.xpath("//*[@class=\"orangehrm-header-container\"]//*[@class=\"oxd-button oxd-button--medium oxd-button--secondary\"]");
+    private final SelenideElement employerTypeForHints = $x("//*[@placeholder=\"Type for hints...\"]");
 
-    private final By EmployeTypeForHints = By.xpath("//*[@placeholder=\"Type for hints...\"]");
+    private final SelenideElement create = $x("//*[@type=\"submit\"]");
+    private final SelenideElement submit = $x("//*[@type=\"button\" and @class=\"oxd-button oxd-button--medium oxd-button--secondary orangehrm-sm-button\"]");
+    private final SelenideElement back = $x("//*[@class=\"oxd-button oxd-button--medium oxd-button--ghost orangehrm-sm-button\"]");
 
-    private final By Create = By.xpath("//*[@type=\"submit\"]");
-    private final By Submit = By.xpath("//*[@type=\"button\" and @class=\"oxd-button oxd-button--medium oxd-button--secondary orangehrm-sm-button\"]");
-    private final By Back = By.xpath("//*[@class=\"oxd-button oxd-button--medium oxd-button--ghost orangehrm-sm-button\"]");
-
-    private final By assertAlice = By.xpath("//*[contains(text(), 'Alice Duval')]");
-    private final String NameEmployer = "Alice  Duval";
-    private final String Text = "Random text";
+    private final SelenideElement assertAlice = $x("//*[contains(text(), 'Alice Duval')]");
+    private final String nameEmployer = "Alice  Duval";
+    private final String text = "Random text";
 
     @Step("Создать Claim")
-    public void claimAssignAndSelect() throws InterruptedException {
-        WebElement claim = driver.findElement(Claim);
+    public void claimAssign() throws InterruptedException {
         claim.click();
-        WebElement assign = driver.findElement(Assign);
         assign.click();
-        WebElement select = driver.findElement(Select);
-        Thread.sleep(1000);
-        select.sendKeys(Keys.ARROW_DOWN);
-        select.sendKeys(Keys.ENTER);
-        WebElement selectForEnter = driver.findElement(SelectVer2);
-        Thread.sleep(1000);
-        selectForEnter.sendKeys(Keys.ARROW_DOWN);
-        selectForEnter.sendKeys(Keys.ENTER);
     }
+
+    @Step("Создать")
+    public void selectAccommodation() throws InterruptedException {
+        select.shouldBe(Condition.visible);
+        select.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+    }
+    public void selectV2() {
+        selectVer2.shouldBe(Condition.visible);
+        selectVer2.sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
+    }
+
     @Step("Проверочка")
-    public void assertionElement(){
-        Assert.assertTrue(driver.findElement((ExpectedEl)).isDisplayed());
+    public void assertionElement() {
+        expectedEl.shouldBe(Condition.visible);
+        Assert.assertTrue(expectedEl.isDisplayed());
 
     }
+
     @Step("Написать ремарку")
-    public void createInRemarkText(){
-        WebElement remark = driver.findElement(Remark);
-        remark.click();
-        remark.sendKeys(Text);
+    public void createInRemarkText() throws InterruptedException {
+        synchronized (remark) {
+            remark.shouldBe(Condition.visible);
+        }
+        remark.sendKeys(text);
     }
+
     @Step("Написать имя")
     public void createInEmployerName() throws InterruptedException {
-        WebElement typeForHints = driver.findElement(EmployeTypeForHints);
-        WebElement create = driver.findElement(Create);
-        typeForHints.click();
-        typeForHints.sendKeys(NameEmployer);
+        employerTypeForHints.click();
+        employerTypeForHints.sendKeys(nameEmployer);
         Thread.sleep(1000);
-        typeForHints.click();
+        employerTypeForHints.click();
         Thread.sleep(1000);
-        typeForHints.sendKeys(Keys.ARROW_DOWN);
+        employerTypeForHints.sendKeys(Keys.ARROW_DOWN);
         Thread.sleep(3000);
-        typeForHints.sendKeys(Keys.ENTER);
+        employerTypeForHints.sendKeys(Keys.ENTER);
         Thread.sleep(1000);
         create.click();
     }
+
     @Step("Принять претензию")
-    public void submitClaim(){
-        WebElement submit = driver.findElement(Submit);
+    public void submitClaim() {
+        submit.shouldBe(Condition.visible);
         submit.click();
-        WebElement back = driver.findElement(Back);
+        back.shouldBe(Condition.visible);
         back.click();
     }
+
     @Step("Assert")
-    public void assertAlice(){
-        Assert.assertTrue(driver.findElement(assertAlice).isDisplayed());
+    public void assertAlice() {
+        Assert.assertTrue(assertAlice.isDisplayed());
     }
 }
 
