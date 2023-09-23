@@ -15,6 +15,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class ScreenshotListener extends TestBase {
+
+    private final String WayToScreen = "C:\\Users\\user\\IdeaProjects\\FinalHomework\\src\\test\\java\\ui\\helpers\\screen\\myscreenshot.png";
     public void expectedScreenshot(WebDriver driver) throws IOException, InterruptedException {
         Thread.sleep(1500);//слишком быстро грузится страница
         File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);

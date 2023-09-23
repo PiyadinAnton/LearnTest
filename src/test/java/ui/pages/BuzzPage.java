@@ -10,6 +10,7 @@ public class BuzzPage extends TestBase {
     private final By Share = By.xpath("(//*[@type='submit'])[2]");
     private final By PasteVideo = By.xpath("(//*[@id=\"app\"]//textarea)[3]");
     private final By CssShare = By.cssSelector("button.oxd-glass-button:nth-child(2)");
+    private final String Video = "https://www.youtube.com/watch?v=Llyp-bN-wBE&ab_channel=TESFAN";
 
     public BuzzPage(WebDriver driver) {
         this.driver = driver;

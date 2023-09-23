@@ -30,7 +30,8 @@ public class DashboardPage extends TestBase {
 
     @Step("Поиск нужного элемента")
     public void testElementPresence() {
-        driver.get(URL);
+        TestBase testBase = new TestBase();
+        testBase.getUrl(driver);
         driver.findElement(Dashboard).isDisplayed();
     }
 
