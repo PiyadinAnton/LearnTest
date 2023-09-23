@@ -34,6 +34,11 @@ public class TestRunner {
         test5.setName("Test 5");
         test5.setXmlClasses(Arrays.asList(new XmlClass("ui.RandomTest")));
 
+        XmlTest test6 = new XmlTest(suite);
+        test6.setName("Test 6");
+        test6.setXmlClasses(Arrays.asList(new XmlClass("ui.ClaimTest")));
+
+
         List<XmlSuite> suites = new ArrayList<>();
         suites.add(suite);
 
