@@ -1,5 +1,6 @@
 package ui.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.testng.Assert;
@@ -48,7 +49,6 @@ public class LoginPage extends TestBase {
 
     @Step("Выход из системы")
     public void logoutVoid() {
-
         setMenuButton();
         setLogoutButton();
     }
@@ -77,6 +77,7 @@ public class LoginPage extends TestBase {
 
     @Step("Проверка Элемента")
     public void assertLoginButton() {
+       loginButton.shouldBe(Condition.visible);
         Assert.assertTrue(loginButton.isDisplayed());
     }
 

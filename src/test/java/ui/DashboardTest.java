@@ -3,7 +3,6 @@ package ui;
 import io.qameta.allure.Description;
 
 import org.testng.annotations.Test;
-import ui.helpers.ScreenshotListener;
 import ui.helpers.WebDrivers;
 import ui.pages.DashboardPage;
 import ui.pages.LoginPage;

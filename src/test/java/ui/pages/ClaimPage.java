@@ -1,18 +1,19 @@
 package ui.pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import ui.TestBase;
 
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.webdriver;
+import static com.codeborne.selenide.Selenide.*;
 
 public class ClaimPage extends TestBase {
-    private final SelenideElement select = $x("//*[contains(text(), 'Select')][1]");
-    private final SelenideElement selectVer2 = $x("//*[@id=\"app\"]//*/*[1]/div[2]/*/div[2]/*/div[1]");
+    private final String select = "[class='oxd-select-text-input']";
+    private final SelenideElement selectVer2 = $x("//*[contains(text(), 'Select')][1]");
 
     private final SelenideElement claim = $x("//*[@href='/web/index.php/claim/viewClaimModule']");
 
@@ -28,35 +29,39 @@ public class ClaimPage extends TestBase {
     private final SelenideElement submit = $x("//*[@type=\"button\" and @class=\"oxd-button oxd-button--medium oxd-button--secondary orangehrm-sm-button\"]");
     private final SelenideElement back = $x("//*[@class=\"oxd-button oxd-button--medium oxd-button--ghost orangehrm-sm-button\"]");
 
-    private final SelenideElement assertAlice = $x("//*[contains(text(), 'Alice Duval')]");
-    private final String nameEmployer = "Alice  Duval";
+    private final SelenideElement assertName = $x("//*[contains(text(), 'Maggie Manning')]");
+    private final String nameEmployer = "Maggie Manning";
     private final String text = "Random text";
 
     @Step("Создать Claim")
-    public void claimAssign() throws InterruptedException {
+    public void claimAssign() {
         claim.click();
         assign.click();
     }
 
-    @Step("Создать")
-    public void selectAccommodation() throws InterruptedException {
-        select.shouldBe(Condition.visible);
-        select.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
-    }
     public void selectV2() {
-        selectVer2.shouldBe(Condition.visible);
-        selectVer2.sendKeys(Keys.ARROW_DOWN,Keys.ENTER);
+        ElementsCollection elements = $$(select);
+        SelenideElement element = elements.get(1);
+        actions()
+                .moveToElement(element)
+                .click()
+                .sendKeys(Keys.ARROW_DOWN)
+                .sendKeys(Keys.ENTER)
+                .perform();
     }
 
-    @Step("Проверочка")
-    public void assertionElement() {
-        expectedEl.shouldBe(Condition.visible);
-        Assert.assertTrue(expectedEl.isDisplayed());
-
+    public void selectV1() {
+            selectVer2.shouldBe(Condition.visible);
+            actions()
+                    .moveToElement(selectVer2)
+                    .click()
+                    .sendKeys(Keys.ARROW_DOWN)
+                    .sendKeys(Keys.ENTER)
+                    .perform();
     }
 
     @Step("Написать ремарку")
-    public void createInRemarkText() throws InterruptedException {
+    public void createInRemarkText(){
         synchronized (remark) {
             remark.shouldBe(Condition.visible);
         }
@@ -67,18 +72,15 @@ public class ClaimPage extends TestBase {
     public void createInEmployerName() throws InterruptedException {
         employerTypeForHints.click();
         employerTypeForHints.sendKeys(nameEmployer);
-        Thread.sleep(1000);
-        employerTypeForHints.click();
-        Thread.sleep(1000);
+        Selenide.Wait();
         employerTypeForHints.sendKeys(Keys.ARROW_DOWN);
-        Thread.sleep(3000);
         employerTypeForHints.sendKeys(Keys.ENTER);
-        Thread.sleep(1000);
-        create.click();
     }
 
     @Step("Принять претензию")
     public void submitClaim() {
+        create.shouldBe(Condition.visible);
+        create.click();
         submit.shouldBe(Condition.visible);
         submit.click();
         back.shouldBe(Condition.visible);
@@ -86,8 +88,9 @@ public class ClaimPage extends TestBase {
     }
 
     @Step("Assert")
-    public void assertAlice() {
-        Assert.assertTrue(assertAlice.isDisplayed());
+    public void setAssertName() {
+        assertName.shouldBe(Condition.visible);
+        Assert.assertTrue(assertName.isDisplayed());
     }
 }
 

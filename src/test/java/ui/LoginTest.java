@@ -40,5 +40,5 @@ public class LoginTest extends WebDrivers {
     public void downTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage();
         loginPage.desLogin();
-    }
-}
+
+}}

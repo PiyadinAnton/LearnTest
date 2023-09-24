@@ -14,12 +14,11 @@ public class ClaimTest extends WebDrivers {
         ClaimPage claimPage = new ClaimPage();
         loginPage.loginVoid();
         claimPage.claimAssign();
-        claimPage.selectV2();
         claimPage.createInEmployerName();
-        claimPage.selectAccommodation();
+        claimPage.selectV2();
         claimPage.createInRemarkText();
+        claimPage.selectV1();
         claimPage.submitClaim();
-        claimPage.assertAlice();
-        claimPage.assertionElement();
+        claimPage.setAssertName();
     }
 }
