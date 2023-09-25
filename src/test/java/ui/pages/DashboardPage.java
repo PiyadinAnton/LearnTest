@@ -14,6 +14,7 @@ public class DashboardPage extends TestBase {
     private final SelenideElement dashboardElement = $("#app .orangehrm-dashboard-widget-header");
     private final SelenideElement buzz = $("ul li:nth-child(12) a");
 
+    @Step("Клик на Buzz")
     public void setBuzz() {
         buzz.click();
     }
@@ -25,8 +26,9 @@ public class DashboardPage extends TestBase {
 
     @Step("Проверка наличия элемента")
     public void assertDashboard() throws InterruptedException {
-        synchronized(dashboard){
-        dashboard.wait(1500);}
+        synchronized (dashboard) {
+            dashboard.wait(1500);
+        }
         Assert.assertTrue(dashboard.isDisplayed());
     }
 

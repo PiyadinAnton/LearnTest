@@ -18,9 +18,9 @@ public class LoginPage extends TestBase {
     private final SelenideElement logoutButton = $x("//*[@href=\"/web/index.php/auth/logout\"]");
     private final SelenideElement menu = $x("//*[@class='oxd-userdropdown-name']");
     private final String login = "Admin";
-    private final String  fakeLogin = "aaa";
-    private final String  password = "admin123";
-    private final String  fakePassword = "bbb";
+    private final String fakeLogin = "aaa";
+    private final String password = "admin123";
+    private final String fakePassword = "bbb";
 
     @Step("Проверка Элемента")
     public void assertLoginName() {
@@ -39,10 +39,12 @@ public class LoginPage extends TestBase {
         loginButton.click();
     }
 
+    @Step("Клик на меню")
     public void setMenuButton() {
         menu.click();
     }
 
+    @Step("Клик на логаут")
     public void setLogoutButton() {
         logoutButton.click();
     }
@@ -53,6 +55,7 @@ public class LoginPage extends TestBase {
         setLogoutButton();
     }
 
+    @Step("Ввести данные JS скриптом")
     public void insertLoginData() {
         loginInput.click();
         loginInput.sendKeys(login);
@@ -60,6 +63,7 @@ public class LoginPage extends TestBase {
         passwordInput.sendKeys(password);
     }
 
+    @Step("Кликнуть на логин JS скриптом")
     public void jsClickButton() {
         SelenideElement element = $(loginButton);
         executeJavaScript("arguments[0].click();", element);
@@ -77,14 +81,15 @@ public class LoginPage extends TestBase {
 
     @Step("Проверка Элемента")
     public void assertLoginButton() {
-       loginButton.shouldBe(Condition.visible);
+        loginButton.shouldBe(Condition.visible);
         Assert.assertTrue(loginButton.isDisplayed());
     }
 
     @Step("Проверка Элемента")
     public void assertInvalidCredentials() throws InterruptedException {
-        synchronized (invalidCredentials){
-        invalidCredentials.wait(1000);}
+        synchronized (invalidCredentials) {
+            invalidCredentials.wait(1000);
+        }
         Assert.assertTrue(invalidCredentials.isDisplayed());
     }
 

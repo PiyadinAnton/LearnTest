@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 
 public class WebDrivers {
-    //@BeforeMethod
+    @BeforeMethod
     public void exampleTest() {
         Configuration.browser = "chrome";
     }

@@ -11,7 +11,6 @@ import java.io.ByteArrayInputStream;
 import static com.codeborne.selenide.Selenide.*;
 
 public class ScreenshotListener extends TestBase {
-
     @Step("Отправка скриншота для подтверждения теста")
     public void takeScreenshot() {
         screenshot("Screenshot");

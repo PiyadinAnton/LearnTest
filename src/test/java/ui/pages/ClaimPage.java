@@ -2,7 +2,6 @@ package ui.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
@@ -39,6 +38,7 @@ public class ClaimPage extends TestBase {
         assign.click();
     }
 
+    @Step("Выбрать 2 опцию")
     public void selectV2() {
         ElementsCollection elements = $$(select);
         SelenideElement element = elements.get(1);
@@ -50,18 +50,19 @@ public class ClaimPage extends TestBase {
                 .perform();
     }
 
+    @Step("Выбрать 1 опцию")
     public void selectV1() {
-            selectVer2.shouldBe(Condition.visible);
-            actions()
-                    .moveToElement(selectVer2)
-                    .click()
-                    .sendKeys(Keys.ARROW_DOWN)
-                    .sendKeys(Keys.ENTER)
-                    .perform();
+        selectVer2.shouldBe(Condition.visible);
+        actions()
+                .moveToElement(selectVer2)
+                .click()
+                .sendKeys(Keys.ARROW_DOWN)
+                .sendKeys(Keys.ENTER)
+                .perform();
     }
 
     @Step("Написать ремарку")
-    public void createInRemarkText(){
+    public void createInRemarkText() {
         synchronized (remark) {
             remark.shouldBe(Condition.visible);
         }
@@ -72,18 +73,18 @@ public class ClaimPage extends TestBase {
     public void createInEmployerName() throws InterruptedException {
         employerTypeForHints.click();
         employerTypeForHints.sendKeys(nameEmployer);
-        Selenide.Wait();
+        Thread.sleep(1500);
         employerTypeForHints.sendKeys(Keys.ARROW_DOWN);
         employerTypeForHints.sendKeys(Keys.ENTER);
     }
 
     @Step("Принять претензию")
     public void submitClaim() {
-        create.shouldBe(Condition.visible);
+        create.should(Condition.visible);
         create.click();
-        submit.shouldBe(Condition.visible);
+        submit.should(Condition.visible);
         submit.click();
-        back.shouldBe(Condition.visible);
+        back.should(Condition.visible);
         back.click();
     }
 

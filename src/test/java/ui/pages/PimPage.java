@@ -27,25 +27,29 @@ public class PimPage extends TestBase {
     private final String createLastName = "Petrovich";
     private final String expectedTextForAssertEquals = createFirstName + " " + createMiddleName;
 
-
+    @Step("Клик на Pim")
     public void forCheckPim() {
-       pimXpath.click();
+        pimXpath.click();
     }
 
+    @Step("Клик для поиска имени")
     public void forNameSearchClick() {
         nameSearch.click();
         nameSearch.sendKeys(createFirstName);
     }
 
+    @Step("Клик на Search")
     public void forThreadSearchElement() throws InterruptedException {
         search.wait(1600);
         search.click();
     }
 
+    @Step("Клик на Add")
     public void setAddXpath() {
         add.click();
     }
 
+    @Step("Создать ФИО")
     public void setFindName() {
         searchFirstName.click();
         searchFirstName.sendKeys(createFirstName);
@@ -56,6 +60,7 @@ public class PimPage extends TestBase {
         save.click();
     }
 
+    @Step("Клик на Pim")
     public void setPimCss() {
         pim.click();
     }
