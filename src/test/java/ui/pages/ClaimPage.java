@@ -79,8 +79,7 @@ public class ClaimPage extends TestBase {
         employerTypeForHints.click();
         employerTypeForHints.sendKeys(nameEmployer);
         Thread.sleep(1500);
-        employerTypeForHints.sendKeys(Keys.ARROW_DOWN);
-        employerTypeForHints.sendKeys(Keys.ENTER);
+        employerTypeForHints.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
     }
 
     @Step("Создать")

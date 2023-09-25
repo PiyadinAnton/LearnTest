@@ -28,7 +28,7 @@ public class DashboardPage extends TestBase {
     }
 
     @Step("Проверка наличия элемента")
-    public void assertDashboard() throws InterruptedException {
+    public void assertDashboard()  {
         synchronized (dashboard) {
             dashboard.shouldBe(Condition.visible, Duration.ofSeconds(5));
         }
@@ -43,7 +43,6 @@ public class DashboardPage extends TestBase {
     @Step("Скроллить")
     public void scroll() {
         executeJavaScript("window.scrollTo(0, document.body.scrollHeight);");
-        screenshot("scroll");
     }
 
     @Step("Отправка заголовка страницы в командную строку")

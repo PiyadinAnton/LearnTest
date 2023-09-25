@@ -75,11 +75,16 @@ public class LoginPage extends TestBase {
     @Step("Ложный вход в систему")
     public void fakeLoginAgain() {
         getUrl();
-        loginInput.click();
-        loginInput.sendKeys(fakeLogin);
-        passwordInput.click();
-        passwordInput.sendKeys(fakePassword);
-        loginButton.click();
+        actions()
+                .moveToElement(loginInput)
+                .click()
+                .sendKeys(fakeLogin)
+                .moveToElement(passwordInput)
+                .click().sendKeys(fakePassword)
+                .moveToElement(loginButton)
+                .click()
+                .perform();
+
     }
 
     @Step("Проверка Элемента")
@@ -107,7 +112,6 @@ public class LoginPage extends TestBase {
         loginVoid();
         try {
             Assert.assertEquals(1, 2);
-            Selenide.screenshot("screen.png");
         } catch(Exception ignored) {
 
         }
