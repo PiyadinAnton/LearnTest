@@ -2,11 +2,14 @@ package ui.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
 import ui.TestBase;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -25,12 +28,14 @@ public class ClaimPage extends TestBase {
     private final SelenideElement employerTypeForHints = $x("//*[@placeholder=\"Type for hints...\"]");
 
     private final SelenideElement create = $x("//*[@type=\"submit\"]");
-    private final SelenideElement submit = $x("//*[@type=\"button\" and @class=\"oxd-button oxd-button--medium oxd-button--secondary orangehrm-sm-button\"]");
+    private final SelenideElement submit = $x("//*[@class=\"oxd-button oxd-button--medium oxd-button--secondary orangehrm-sm-button\"]");
     private final SelenideElement back = $x("//*[@class=\"oxd-button oxd-button--medium oxd-button--ghost orangehrm-sm-button\"]");
 
     private final SelenideElement assertName = $x("//*[contains(text(), 'Maggie Manning')]");
     private final String nameEmployer = "Maggie Manning";
     private final String text = "Random text";
+
+    private final SelenideElement listbox = $x("//*[@role='listbox')");
 
     @Step("Создать Claim")
     public void claimAssign() {
@@ -78,12 +83,20 @@ public class ClaimPage extends TestBase {
         employerTypeForHints.sendKeys(Keys.ENTER);
     }
 
-    @Step("Принять претензию")
-    public void submitClaim() {
+    @Step("Создать")
+    public void submitClaimStep1() {
         create.should(Condition.visible);
         create.click();
-        submit.should(Condition.visible);
-        submit.click();
+    }
+    @Step("Создать")
+    public void submitClaimStep2() {
+        synchronized (submit) {
+            submit.shouldBe(Condition.visible,Duration.ofSeconds(5));
+            submit.click();
+        }
+    }
+    @Step("Создать")
+    public void submitClaimStep3() {
         back.should(Condition.visible);
         back.click();
     }

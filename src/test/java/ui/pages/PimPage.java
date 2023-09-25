@@ -1,5 +1,6 @@
 package ui.pages;
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.testng.Assert;
@@ -40,13 +41,18 @@ public class PimPage extends TestBase {
 
     @Step("Клик на Search")
     public void forThreadSearchElement() throws InterruptedException {
-        search.wait(1600);
-        search.click();
+        synchronized (search) {
+            search.wait(1600);
+            search.click();
+        }
     }
 
     @Step("Клик на Add")
     public void setAddXpath() {
-        add.click();
+        synchronized (add) {
+            add.should(Condition.visible);
+            add.click();
+        }
     }
 
     @Step("Создать ФИО")

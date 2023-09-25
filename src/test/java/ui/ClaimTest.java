@@ -18,7 +18,9 @@ public class ClaimTest extends WebDrivers {
         claimPage.selectV2();
         claimPage.createInRemarkText();
         claimPage.selectV1();
-        claimPage.submitClaim();
+        claimPage.submitClaimStep1();
+        claimPage.submitClaimStep2();
+        claimPage.submitClaimStep3();
         claimPage.setAssertName();
     }
 }

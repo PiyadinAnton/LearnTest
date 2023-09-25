@@ -1,11 +1,14 @@
 package ui.pages;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 import ui.TestBase;
-import ui.helpers.ScreenshotListener;
+
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -88,7 +91,7 @@ public class LoginPage extends TestBase {
     @Step("Проверка Элемента")
     public void assertInvalidCredentials() throws InterruptedException {
         synchronized (invalidCredentials) {
-            invalidCredentials.wait(1000);
+            invalidCredentials.shouldBe(Condition.visible, Duration.ofSeconds(5));
         }
         Assert.assertTrue(invalidCredentials.isDisplayed());
     }
@@ -101,13 +104,12 @@ public class LoginPage extends TestBase {
 
     @Step("Роняем тест")
     public void desLogin() {
-        ScreenshotListener screenshotListener = new ScreenshotListener();
         loginVoid();
         try {
             Assert.assertEquals(1, 2);
-        } catch (AssertionError error) {
-            screenshotListener.takeScreenshot();
-            throw error;
+            Selenide.screenshot("screen.png");
+        } catch(Exception ignored) {
+
         }
     }
 }

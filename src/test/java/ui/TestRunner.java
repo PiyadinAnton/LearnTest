@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestRunner {
+public class    TestRunner {
     public static void main(String[] args) {
         XmlSuite suite = new XmlSuite();
         suite.setName("Test Suite");

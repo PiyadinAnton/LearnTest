@@ -5,6 +5,7 @@ target/
 .allure
 /allure-results
 /test-output
+.build
 
 ### IntelliJ IDEA ###
 .idea/modules.xml

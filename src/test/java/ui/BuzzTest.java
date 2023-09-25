@@ -2,7 +2,7 @@ package ui;
 
 import io.qameta.allure.Description;
 import org.testng.annotations.Test;
-import ui.helpers.ScreenshotListener;
+
 import ui.helpers.WebDrivers;
 import ui.pages.BuzzPage;
 import ui.pages.DashboardPage;
@@ -15,12 +15,10 @@ public class BuzzTest extends WebDrivers {
         BuzzPage buzzPage = new BuzzPage();
         LoginPage loginPage = new LoginPage();
         DashboardPage dashboardPage = new DashboardPage();
-        ScreenshotListener screenshotListener = new ScreenshotListener();
         loginPage.loginVoid();
         dashboardPage.setBuzz();
         buzzPage.setCssShare();
         buzzPage.setPasteVideo();
         buzzPage.setShare();
-        screenshotListener.takeScreenshot();
     }
 }

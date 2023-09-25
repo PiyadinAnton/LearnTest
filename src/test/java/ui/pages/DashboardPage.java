@@ -1,10 +1,13 @@
 package ui.pages;
 
 
+import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 import ui.TestBase;
+
+import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 
@@ -27,7 +30,7 @@ public class DashboardPage extends TestBase {
     @Step("Проверка наличия элемента")
     public void assertDashboard() throws InterruptedException {
         synchronized (dashboard) {
-            dashboard.wait(1500);
+            dashboard.shouldBe(Condition.visible, Duration.ofSeconds(5));
         }
         Assert.assertTrue(dashboard.isDisplayed());
     }
