@@ -4,6 +4,7 @@ import com.codeborne.selenide.Browsers;
 import com.codeborne.selenide.Configuration;
 
 import static com.codeborne.selenide.Selenide.*;
+import static com.codeborne.selenide.WebDriverRunner.clearBrowserCache;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
 
@@ -24,5 +25,6 @@ public class WebDrivers {
     @AfterMethod
     public void close() {
         closeWebDriver();
+        clearBrowserCache();
     }
 }

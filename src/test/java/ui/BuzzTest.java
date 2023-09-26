@@ -10,6 +10,7 @@ import ui.pages.BuzzPage;
 import ui.pages.DashboardPage;
 import ui.pages.LoginPage;
 
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static io.qameta.allure.SeverityLevel.NORMAL;
 
 @Listeners({ScreenShooter.class})
@@ -19,7 +20,7 @@ public class BuzzTest extends WebDrivers {
     @Test
     @Story("Проверка функционала: Share video")
     @Description("Поделиться видео")
-    @Severity(NORMAL)
+    @Severity(CRITICAL)
     public void createPostTest() throws InterruptedException {
         BuzzPage buzzPage = new BuzzPage();
         LoginPage loginPage = new LoginPage();

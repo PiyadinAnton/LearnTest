@@ -10,6 +10,7 @@ import ui.pages.DashboardPage;
 import ui.pages.LoginPage;
 
 import static io.qameta.allure.SeverityLevel.NORMAL;
+import static io.qameta.allure.SeverityLevel.TRIVIAL;
 
 
 @Listeners({ScreenShooter.class})
@@ -32,7 +33,7 @@ public class DashboardTest extends WebDrivers {
     @Test
     @Story("Логин с помощью JS скрипта")
     @Description("Js Скрипт")
-    @Severity(NORMAL)
+    @Severity(TRIVIAL)
     public void forJSFindElement()  {
         DashboardPage dashboardPage = new DashboardPage();
         LoginPage loginPage = new LoginPage();

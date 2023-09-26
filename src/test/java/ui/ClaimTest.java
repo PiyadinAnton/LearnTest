@@ -8,6 +8,7 @@ import ui.helpers.WebDrivers;
 import ui.pages.ClaimPage;
 import ui.pages.LoginPage;
 
+import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static io.qameta.allure.SeverityLevel.NORMAL;
 
 @Listeners({ScreenShooter.class})
@@ -17,7 +18,7 @@ public class ClaimTest extends WebDrivers {
     @Test
     @Story("Проверка создания претензии (Claim)")
     @Description("Тыкаем")
-    @Severity(NORMAL)
+    @Severity(CRITICAL)
     public void claimTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage();
         ClaimPage claimPage = new ClaimPage();
