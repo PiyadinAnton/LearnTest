@@ -2,7 +2,6 @@ package ui.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 import org.openqa.selenium.Keys;
@@ -34,8 +33,6 @@ public class ClaimPage extends TestBase {
     private final SelenideElement assertName = $x("//*[contains(text(), 'Maggie Manning')]");
     private final String nameEmployer = "Maggie Manning";
     private final String text = "Random text";
-
-    private final SelenideElement listbox = $x("//*[@role='listbox')");
 
     @Step("Создать Claim")
     public void claimAssign() {
@@ -79,7 +76,8 @@ public class ClaimPage extends TestBase {
         employerTypeForHints.click();
         employerTypeForHints.sendKeys(nameEmployer);
         Thread.sleep(1500);
-        employerTypeForHints.sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+        employerTypeForHints.sendKeys(Keys.ARROW_DOWN);
+        employerTypeForHints.sendKeys(Keys.ENTER);
     }
 
     @Step("Создать")

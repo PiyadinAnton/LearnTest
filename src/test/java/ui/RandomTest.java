@@ -1,7 +1,7 @@
 package ui;
 
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Description;
+import io.qameta.allure.*;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -11,6 +11,7 @@ import java.util.Random;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$x;
+import static io.qameta.allure.SeverityLevel.NORMAL;
 
 public class RandomTest extends WebDrivers {
     private final SelenideElement LoginInput = $("[name='username']");
@@ -37,8 +38,12 @@ public class RandomTest extends WebDrivers {
         boolean useNumbers = true;
         return RandomStringUtils.random(length, useLetters, useNumbers);
     }
+    @Epic("Задание")
+    @Feature("Роняем запад")
     @Test(dataProvider = "loginData")
+    @Story("Вводим рандомные данные, вдруг вход осуществится, а это баг")
     @Description("Рандомный логин")
+    @Severity(NORMAL)
     public void randomLoginVoid(String username, String password) throws InterruptedException {
         LoginPage loginPage = new LoginPage();
         TestBase testBase = new TestBase();

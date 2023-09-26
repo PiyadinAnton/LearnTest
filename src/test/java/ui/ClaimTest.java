@@ -1,16 +1,23 @@
 package ui;
 
 import com.codeborne.selenide.testng.ScreenShooter;
-import io.qameta.allure.Description;
+import io.qameta.allure.*;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import ui.helpers.WebDrivers;
 import ui.pages.ClaimPage;
 import ui.pages.LoginPage;
+
+import static io.qameta.allure.SeverityLevel.NORMAL;
+
 @Listeners({ScreenShooter.class})
 public class ClaimTest extends WebDrivers {
+    @Epic("Проверка сайта ORANGEHRM")
+    @Feature("Проверка функицонала страниц")
     @Test
+    @Story("Проверка создания претензии (Claim)")
     @Description("Тыкаем")
+    @Severity(NORMAL)
     public void claimTest() throws InterruptedException {
         LoginPage loginPage = new LoginPage();
         ClaimPage claimPage = new ClaimPage();
