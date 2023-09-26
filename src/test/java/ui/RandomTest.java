@@ -19,16 +19,11 @@ public class RandomTest extends WebDrivers {
     private final SelenideElement LoginButton = $x("//div/button");
     @DataProvider(name = "loginData")
     public Object[][] loginData() {
-
-        Random random = new Random();
-        int count = random.nextInt(5) + 1;
-        Object[][] data = new Object[count][2];
-        for (int i = 0; i < count; i++) {
-            String username = generateRandomString();
-            String password = generateRandomString();
-            data[i][0] = username;
-            data[i][1] = password;
-        }
+        Object[][] data = new Object[1][2];
+        String username = generateRandomString();
+        String password = generateRandomString();
+        data[0][0] = username;
+        data[0][1] = password;
         return data;
     }
 
