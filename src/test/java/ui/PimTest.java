@@ -12,7 +12,7 @@ import static io.qameta.allure.SeverityLevel.CRITICAL;
 import static io.qameta.allure.SeverityLevel.NORMAL;
 
 @Listeners({ScreenShooter.class})
-public class PimTest extends WebDrivers {
+public class PimTest extends PimPage {
     @Epic("Проверка сайта ORANGEHRM")
     @Feature("Проверка функицонала страниц")
     @Test
@@ -20,11 +20,10 @@ public class PimTest extends WebDrivers {
     @Description("Создать")
     @Severity(CRITICAL)
     public void createTest() throws InterruptedException {
-        PimPage pimPage = new PimPage();
         LoginPage loginPage = new LoginPage();
         loginPage.loginVoid();
-        pimPage.createMan();
-        pimPage.checkCreateMan();
-        pimPage.assertExpectedElement();
+        super.createMan();
+        super.checkCreateMan();
+        super.assertExpectedElement();
     }
 }
