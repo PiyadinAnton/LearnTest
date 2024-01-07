@@ -24,7 +24,7 @@ public class RandomTest extends WebDrivers {
         String password = generateRandomString();
         data[0][0] = username;
         data[0][1] = password;
-        return data;
+        return data;123
     }
 
     private String generateRandomString() {
